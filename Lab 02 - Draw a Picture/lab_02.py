@@ -38,10 +38,11 @@ arcade.draw_circle_filled(340, 295, 10, arcade.color.LIGHT_BLUE)
 arcade.draw_circle_filled(310, 295, 10, arcade.color.LIGHT_BLUE)
 arcade.draw_circle_filled(280, 295, 10, arcade.color.LIGHT_BLUE)
 
-# Drawing the fish
+# Drawing the fish.
 arcade.draw_triangle_filled(34,50, 34, 20, 10, 50, arcade.color.ORANGE)
 arcade.draw_ellipse_filled(40, 50, 35, 25, arcade.color.ORANGE)
 arcade.draw_circle_filled(45, 55, 3, arcade.color.BLACK)
+
 # Name of the boat.
 arcade.draw_text("Seas the Day",
                  355, 310,
