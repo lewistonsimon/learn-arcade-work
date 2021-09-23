@@ -27,22 +27,22 @@ def draw_sailboat():
 
 
 def draw_fish(x, y):
-    arcade.draw_triangle_filled(34 + x, 50 + y, 34 + x, 20 + y, 10 + x, 50 + y, arcade.color.ORANGE)
-    arcade.draw_ellipse_filled(40 + x, 50 + y, 35, 25, arcade.color.ORANGE)
-    arcade.draw_circle_filled(45 + x, 55 + y, 3, arcade.color.BLACK, num_segments=32)
+    arcade.draw_triangle_filled(34 + x - 43, 50 + y - 45, 20 + x - 43, 20 + y - 45, 10 + x - 43, 55 + y - 45, arcade.color.ORANGE)
+    arcade.draw_ellipse_filled(40 + x - 40, 50 + y - 50, 35, 25, arcade.color.ORANGE)
+    arcade.draw_circle_filled(45 + x - 40, 55 + y - 52, 3, arcade.color.BLACK, num_segments=32)
 
 
 def draw_cloud(x, y):
-    arcade.draw_circle_filled(30 + x, 55 + y, 20, arcade.color.WHITE)
-    arcade.draw_circle_filled(15 + x, 40 + y, 20, arcade.color.WHITE)
-    arcade.draw_circle_filled(45 + x, 40 + y, 20, arcade.color.WHITE)
-    arcade.draw_ellipse_filled(30 + x, 40 + y, 55, 50, arcade.color.WHITE)
+    arcade.draw_circle_filled(30 + x - 30, 55 + y - 55, 20, arcade.color.WHITE)
+    arcade.draw_circle_filled(15 + x - 30, 40 + y - 55, 20, arcade.color.WHITE)
+    arcade.draw_circle_filled(45 + x - 30, 40 + y - 55, 20, arcade.color.WHITE)
+    arcade.draw_ellipse_filled(30 + x - 30, 40 + y - 55, 55, 50, arcade.color.WHITE)
 
 
 def draw_birds(x, y):
-    arcade.draw_circle_filled(100 + x, 300 + y, 5, arcade.color.BLACK, num_segments=32)
-    arcade.draw_arc_outline(85 + x, 300 + y, 20, 15, arcade.color.BLACK, 0, 180, 5, 1)
-    arcade.draw_arc_outline(115 + x, 300 + y, 20, 15, arcade.color.BLACK, 0, 180, 5, 1)
+    arcade.draw_circle_filled(100 + x - 100, 300 + y - 300, 5, arcade.color.BLACK, num_segments=32)
+    arcade.draw_arc_outline(85 + x - 100, 300 + y - 300, 20, 15, arcade.color.BLACK, 0, 180, 5, 1)
+    arcade.draw_arc_outline(115 + x - 100, 300 + y - 300, 20, 15, arcade.color.BLACK, 0, 180, 5, 1)
 
 
 def main():
@@ -52,19 +52,21 @@ def main():
 
     draw_water()
     draw_sailboat()
-    draw_fish(200, 20)
-    draw_fish(150, 5)
-    draw_fish(15, 10)
-    draw_fish(60, 20)
+    draw_fish(100, 50)
     draw_fish(200, 60)
-    draw_fish(100, 60)
+    draw_fish(200, 115)
+    draw_fish(50, 30)
+    draw_fish(120, 80)
+    draw_fish(270, 100)
+    draw_fish(175, 140)
     draw_cloud(500, 520)
-    draw_cloud(10, 500)
-    draw_cloud(100, 490)
-    draw_cloud(70, 430)
-    draw_birds(350, 70)
-    draw_birds(400, 60)
-    draw_birds(450, 75)
+    draw_cloud(150, 520)
+    draw_cloud(90, 550)
+    draw_cloud(70, 490)
+    draw_birds(400, 370)
+    draw_birds(450, 360)
+    draw_birds(500, 375)
+    draw_birds(450, 415)
 
     # Finish drawing.
     arcade.finish_render()
