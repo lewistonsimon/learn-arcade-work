@@ -13,7 +13,6 @@ def main():
     natives_traveled = -20
     drinks_in_canteen = 3
 
-
     done = False
     while not done:
         print("A. Drink from your canteen.")
@@ -36,17 +35,64 @@ def main():
             natives_traveled += native_number_now
             print("You had a good night sleep.")
         elif choice.lower() == "a":
-            print("You have quenched your thirst. ")
+            if drinks_in_canteen >= 1:
+                drinks_in_canteen -= 1
+                thirst = 0
+                print("You have quenched your thirst. ")
+            else:
+                print("You do not have any water left.")
         elif choice.lower() == "b":
             camel_distance = random.randrange(5, 13)
             miles_traveled += camel_distance
+            thirst += 1
+            camel_tiredness += 1
             print("You traveled", camel_distance, "miles")
             print("You are making progress.")
+            if random.randrange(20) == 0:
+                drinks_in_canteen = 3
+                thirst = 0
+                camel_tiredness -= 1
+                print("You found an oasis!")
         elif choice.lower() == "c":
             camel_distance = random.randrange(10, 21)
             miles_traveled += camel_distance
+            moving_tiredness = random.randrange(1, 4)
+            camel_tiredness += moving_tiredness
+            thirst += 1
+            native_number_now = random.randrange(7, 15)
+            natives_traveled += native_number_now
             print("You traveled", camel_distance, "miles")
             print("You are zooming.")
+            if random.randrange(20) == 0:
+                drinks_in_canteen = 3
+                thirst = 0
+                camel_tiredness -= 1
+                print("You found an oasis!")
 
+        if not done:
+            if thirst > 4 and thirst <= 6:
+                print("You are thirsty.")
+            elif thirst > 6:
+                print("You died of thirst.")
+                done = True
+
+        if not done:
+            if camel_tiredness > 5 and camel_tiredness <= 8:
+                print("Your camel is getting tired.")
+            elif camel_tiredness > 8:
+                print("Your camel is dead.")
+
+        if not done:
+            if natives_traveled >= miles_traveled:
+                print("You have been caught by the natives.")
+                print("You have lost.")
+                done = True
+            elif (miles_traveled - natives_traveled) < 15:
+                print("The natives are getting close!")
+
+        if not done:
+            if miles_traveled >= 200:
+                print("You Win!")
+                done = True
 
 main()
