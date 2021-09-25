@@ -46,6 +46,8 @@ def main():
             miles_traveled += camel_distance
             thirst += 1
             camel_tiredness += 1
+            native_number_now = random.randrange(7, 15)
+            natives_traveled += native_number_now
             print("You traveled", camel_distance, "miles")
             print("You are making progress.")
             if random.randrange(20) == 0:
@@ -68,6 +70,13 @@ def main():
                 thirst = 0
                 camel_tiredness -= 1
                 print("You found an oasis!")
+        else:
+            print("error please pick again.")
+
+        if not done:
+            if miles_traveled >= 200:
+                print("You Win!")
+                done = True
 
         if not done:
             if thirst > 4 and thirst <= 6:
@@ -90,9 +99,5 @@ def main():
             elif (miles_traveled - natives_traveled) < 15:
                 print("The natives are getting close!")
 
-        if not done:
-            if miles_traveled >= 200:
-                print("You Win!")
-                done = True
 
 main()
