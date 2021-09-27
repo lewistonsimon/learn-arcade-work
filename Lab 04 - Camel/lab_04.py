@@ -53,7 +53,7 @@ def main():
             if random.randrange(20) == 0:
                 drinks_in_canteen = 3
                 thirst = 0
-                camel_tiredness -= 1
+                camel_tiredness = 0
                 print("You found an oasis!")
         elif choice.lower() == "c":
             camel_distance = random.randrange(10, 21)
@@ -68,7 +68,7 @@ def main():
             if random.randrange(20) == 0:
                 drinks_in_canteen = 3
                 thirst = 0
-                camel_tiredness -= 1
+                camel_tiredness = 0
                 print("You found an oasis!")
         else:
             print("error please pick again.")
@@ -90,6 +90,8 @@ def main():
                 print("Your camel is getting tired.")
             elif camel_tiredness > 8:
                 print("Your camel is dead.")
+                caught = (miles_traveled - natives_traveled)
+                natives_traveled += caught
 
         if not done:
             if natives_traveled >= miles_traveled:
