@@ -13,7 +13,6 @@ def main():
     natives_traveled = -20
     drinks_in_canteen = 3
 
-
     done = False
     while not done:
         print("A. Drink from your canteen.")
