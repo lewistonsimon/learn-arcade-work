@@ -98,20 +98,20 @@ def main():
 
         # Checking thirst.
         if not done:
-            if thirst > 4 and thirst <= 6:
-                print("You are thirsty.")
-            elif thirst > 6:
+            if thirst > 6:
                 print("You died of thirst.")
                 done = True
+            elif thirst > 4:
+                print("You are thirsty.")
 
         # Checking the camel.
         if not done:
-            if camel_tiredness > 5 and camel_tiredness <= 8:
-                print("Your camel is getting tired.")
-            elif camel_tiredness > 8:
+            if camel_tiredness > 8:
                 print("Your camel is dead.")
                 caught = (miles_traveled - natives_traveled)
                 natives_traveled += caught
+            elif camel_tiredness > 5:
+                print("Your camel is getting tired.")
 
         # Natives chase
         if not done:
