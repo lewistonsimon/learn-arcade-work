@@ -39,10 +39,10 @@
 #     for j in range(12):
 #         print("b")
 
-# # Real world example
-# for hour in range(1, 13):
-#     for minute in range(60):
-#         print(hour, minute)
+# Real world example
+for hour in range(1, 13):
+    for minute in range(60):
+        print(hour, minute)
 
 # # Runnning total - make sure intial total is outside
 #
@@ -168,10 +168,8 @@ import random
 # else:
 #     print("No dragon.")
 
-my_number = random.random()
-print(my_number * 9 + 1)
-
-
+# my_number = random.random()
+# print(my_number * 9 + 1)
 
 
 
