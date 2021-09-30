@@ -42,7 +42,49 @@
 #     if quit == 0:
 #         done = True
 
-import random
+# import random
+#
+# x = random.random() * 10 + 10
+# print(x)
 
-x = random.random() * 10 + 10
-print(x)
+# for i in range(1, 13):
+#     for x in range(0,60):
+#         print(i, x)
+# total = 0
+# for i in range(10):
+#     total = total + 1
+#     print(total)
+
+
+# def print_triangle(rows):
+#     for i in range(rows):
+#         for j in range(rows - i - 1):
+#             print(".", end=" ")
+#         for j in range(i + 1):
+#             print(j, end=" ")
+#         for j in range(i - 1, -1, -1):
+#             print(j, end=" ")
+#         for j in range((rows - i), 1, -1):
+#             print(".", end=" ")
+#         print()
+# print_triangle(5)
+
+
+# def print_rectangle(width, height):
+#     for i in range(height):
+#         for j in range(width):
+#             print("&", end=" ")
+#         print()
+#
+#
+# print_rectangle(3, 8)
+
+
+# def print_tri(rows):
+#     for i in range(rows):
+#         for j in range(rows - i):
+#             print("*", end=" ")
+#         print()
+#
+#
+# print_tri(4)
