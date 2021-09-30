@@ -15,7 +15,7 @@ def draw_section_outlines():
     arcade.draw_rectangle_outline(1050, 450, 300, 300, arcade.color.BLACK)
 
 
-def draw_section_1(row, column):
+def draw_section_1():
     for row in range(30):
         for column in range(30):
             x = column * 10 + 5
@@ -32,8 +32,6 @@ def draw_section_2():
                 arcade.draw_rectangle_filled(x, y, 5, 5, arcade.color.WHITE)
             else:
                 arcade.draw_rectangle_filled(x, y, 5, 5, arcade.color.BLACK)
-
-
 
 
 def draw_section_3():
@@ -101,7 +99,7 @@ def main():
     draw_section_outlines()
 
     # Draw the sections
-    draw_section_1(30, 30)
+    draw_section_1()
     draw_section_2()
     draw_section_3()
     draw_section_4()
@@ -116,4 +114,3 @@ def main():
 
 
 main()
-
