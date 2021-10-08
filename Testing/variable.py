@@ -88,3 +88,21 @@
 #
 #
 # print_tri(4)
+#
+# def print_triangle(rows):
+#     for i in range(rows):
+#         for j in range(rows - 1 - i):
+#             print(".", end=" ")
+#         for j in range(i + 1):
+#             print(j, end=" ")
+#         for j in range(i - 1, -1, -1):
+#             print(j, end=" ")
+#         print()
+#
+# print_triangle(5)
+
+x = 1
+while x < 64:
+    print(x)
+    x = x * 2
+
