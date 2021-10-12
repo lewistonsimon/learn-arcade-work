@@ -1,6 +1,6 @@
 class Room:
     """
-    This is a class that represents the room
+    This is a class that represents the rooms.
     """
     def __init__(self, description, north, east, south, west):
         self.description = description
@@ -15,9 +15,9 @@ def main():
     room = Room("You are standing outside on a farm. The corn is tall and green.\n"
                 "Clouds fill the sky and the noise of distant tractors fill your ears.\n"
                 "The wind ruffles the leaves in the trees and you see squirrels running.\n"
-                "There is an old red barn to the east.\n"
+                "There is an old red barn to the east. The door is slide open.\n"
                 "Paint is beginning to chip off of it causing it to look rundown.\n"
-                "To the west there is a white ranch style house. The door is cracked open a little.",
+                "To the west there is a white ranch style house.",
                 None, 10, None, 1)
     room_list.append(room)
 
@@ -107,7 +107,6 @@ def main():
                 print("You can't go that way.")
             else:
                 current_room = next_room
-                print(current_room)
 
         # When the user wants to go east.
         elif user_input.lower() == "e" or user_input.lower() == "east":
