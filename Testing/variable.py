@@ -101,8 +101,57 @@
 #
 # print_triangle(5)
 
-x = 1
-while x < 64:
-    print(x)
-    x = x * 2
+# x = 1
+# while x < 64:
+#     print(x)
+#     x = x * 2
 
+# my_list = [3, 4, 1, 0]
+#
+# print(my_list[0])
+
+# different_list = [12, 14, 200, 150, 0, 190]
+# print(different_list[2])
+
+# lotto_numbers = [45, 54, 33, 45, 76, 98]
+# lotto_numbers[0] = 100
+# print(lotto_numbers)
+
+# my_list = [3, 4, 2, 54, 11, 9]
+#
+# for i in range(len(my_list)):
+#     my_list[i] = 0
+# print(my_list)
+
+# hourly_temperature = [56, 58, 59, 62]
+#
+# hourly_temperature.append(65)
+# print(hourly_temperature)
+
+# daily_cars_sold_list = [5, 3, 0, 2, 4, 3]
+# total_cars_sold = 0
+# for daily_cars_sold in daily_cars_sold_list:
+#     total_cars_sold += daily_cars_sold
+#
+# print(total_cars_sold)
+
+# my_list = [3, 5, 2, 1]
+# for i in range(len(my_list)):
+#     print(my_list[0], end=" ")
+
+# my_list = [[3, 2], [1, 4]]
+# print(my_list[1][1])
+
+# my_list = [[0, 0], [1, 2], [5, 6]]
+# print(len(my_list))
+
+# my_list = [3] * 4
+# print(my_list)
+
+# my_text = "Simpson"
+# print(my_text[3:])
+
+my_list = [3, 4, 2, 54, 11, 9]
+for i in range(len(my_list)):
+    my_list[i] = 0
+print(my_list)
