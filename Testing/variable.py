@@ -134,6 +134,8 @@
 #     total_cars_sold += daily_cars_sold
 #
 # print(total_cars_sold)
+# #
+# print(total_cars_sold)
 
 # my_list = [3, 5, 2, 1]
 # for i in range(len(my_list)):
@@ -148,10 +150,24 @@
 # my_list = [3] * 4
 # print(my_list)
 
-# my_text = "Simpson"
-# print(my_text[3:])
+my_text = "Simpson"
+print(my_text[3:])
 
 my_list = [3, 4, 2, 54, 11, 9]
-for i in range(len(my_list)):
-    my_list[i] = 0
-print(my_list)
+# for i in range(len(my_list)):
+#     my_list[i] = 0
+# print(my_list)
+evens_list = []
+# def get_evens(my_list):
+#     for item in my_list:
+#         if item % 2 == 0:
+#             evens_list.append(item)
+#         return evens_list
+
+
+my_list = [2, 3, 4]
+
+# for i in range(len(my_list)):
+#     my_list[i] = 0
+#
+# print(my_list)

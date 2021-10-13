@@ -43,7 +43,7 @@ def main():
                 None, None, None, 2)
     room_list.append(room)
 
-    room = Room("You are standing in the kitchen. Pots and pans line the counter of last nights dinner.\n"
+    room = Room("You are standing in the kitchen. Pots and pans line the counter of last night's dinner.\n"
                 "The fruit bowl is sitting on the table. Flies have begun to gather around the rotting fruit.\n"
                 "Spoons have been spilled and now cover the floor.\n"
                 "You can enter back into the hallway by heading west.",
