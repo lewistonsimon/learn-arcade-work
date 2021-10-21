@@ -1,3 +1,32 @@
+"""# an object is an instance of a class
+# Class
+    # attributes - adjectives, instance variables - describes the class
+    # methods - verbs - functions - what it can do
+
+Inheritance
+parent/child
+super class is the parent
+    parent class is more generic
+    -- kitchen is a room --
+
+
+
+class -- child class or arcade.Window
+# control with mouse
+    on_mouse_motion
+    set_mouse_visable can hide the mouse
+    on_mouse_press
+
+Keyboard:
+    need starting position
+    need movement speed
+    need to stop when key is released
+    on_key_press
+    on_key_release
+
+game controller:
+    
+    """
 # Becomes difficult to use with tons of stuff
 # name = "Link"
 # outfit = "Green"
@@ -356,11 +385,30 @@
 # main()
 
 
-"""
+# """
+#
+# Is-A
+# Has-A
+#
+#
+#
+# """
 
-Is-A
-Has-A
+# class Animal:
+#     pass
+#
+# class Dog(Animal):
+#     def __init__(self, age, name):
+#         self.age = 0
+#         self.name = ""
+#
+#     def bark(self):
+#         print("Woof!")
+#
+#
+# def main():
+#     my_dog = Dog(10, "Fluffy")
+#     print(my_dog.name)
 
 
 
-"""

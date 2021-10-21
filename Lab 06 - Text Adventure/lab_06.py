@@ -90,7 +90,7 @@ def main():
         user_input = input("What do you want to do? ")
         if user_input.lower() == "n" or user_input.lower() == "north":
             next_room = room_list[current_room].north
-            if next_room == None:
+            if next_room is None:
                 print("You can't go that way.")
             else:
                 current_room = next_room
@@ -98,21 +98,21 @@ def main():
 
         elif user_input.lower() == "e" or user_input.lower() == "east":
             next_room = room_list[current_room].east
-            if next_room == None:
+            if next_room is None:
                 print("You can't go that way.")
             else:
                 current_room = next_room
 
         elif user_input.lower() == "s" or user_input.lower() == "south":
             next_room = room_list[current_room].south
-            if next_room == None:
+            if next_room is None:
                 print("You can't go that way.")
             else:
                 current_room = next_room
 
         elif user_input.lower() == "w" or user_input.lower() == "west":
             next_room = room_list[current_room].west
-            if next_room == None:
+            if next_room is None:
                 print("You can't go that way.")
             else:
                 current_room = next_room
