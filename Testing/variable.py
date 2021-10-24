@@ -149,25 +149,48 @@
 
 # my_list = [3] * 4
 # print(my_list)
-
-my_text = "Simpson"
-print(my_text[3:])
-
-my_list = [3, 4, 2, 54, 11, 9]
-# for i in range(len(my_list)):
-#     my_list[i] = 0
-# print(my_list)
-evens_list = []
-# def get_evens(my_list):
-#     for item in my_list:
-#         if item % 2 == 0:
-#             evens_list.append(item)
-#         return evens_list
-
-
-my_list = [2, 3, 4]
+#
+# my_text = "Simpson"
+# print(my_text[3:])
+#
+# my_list = [3, 4, 2, 54, 11, 9]
+# # for i in range(len(my_list)):
+# #     my_list[i] = 0
+# # print(my_list)
+# evens_list = []
+# # def get_evens(my_list):
+# #     for item in my_list:
+# #         if item % 2 == 0:
+# #             evens_list.append(item)
+# #         return evens_list
+#
+#
+# my_list = [2, 3, 4]
 
 # for i in range(len(my_list)):
 #     my_list[i] = 0
 #
 # print(my_list)
+
+
+class Address:
+    def __init__(self):
+        self.name = ""
+        self.line1 = ""
+        self.line2 = ""
+        self.city = ""
+        self.state = ""
+        self.zip = ""
+
+def main():
+    # Create an address
+    my_address = Address()
+
+    # This does work:
+    my_address.name = "Dr. Smith"
+    my_address.line1 = "4"
+    print(my_address.name)
+    print(my_address.line1)
+
+
+main()
