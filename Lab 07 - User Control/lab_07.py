@@ -2,17 +2,38 @@
 
 import arcade
 
-laser_sound = arcade.load_sound(":resources:sounds/fall2.wav")
-arcade.play_sound(laser_sound)
-
 # --- Constants ---
 SCREEN_WIDTH = 800
 SCREEN_HEIGHT = 600
 MOVEMENT_SPEED = 3
 
+# Sound Effects
+wall_hit_sound = arcade.load_sound(":resources:sounds/error3.wav")
+bubble_sound = arcade.load_sound(":resources:sounds/hit1.wav")
+splash_sound = arcade.load_sound(":resources:sounds/secret2.wav")
+
 
 def draw_water():
-    arcade.draw_lrtb_rectangle_filled(0, SCREEN_WIDTH, SCREEN_HEIGHT, 0, arcade.color.BLUE)
+    arcade.set_background_color(arcade.color.SKY_BLUE)
+    arcade.draw_lrtb_rectangle_filled(0, SCREEN_WIDTH, SCREEN_HEIGHT / 3, 0, arcade.color.BLUE)
+
+
+def draw_sailboat():
+    # Sail
+    arcade.draw_triangle_filled(340, 550, 340, 350, 100, 350, arcade.color.WHITE)
+    arcade.draw_rectangle_filled(225, 350, 245, 5, arcade.color.BROWN)
+    arcade.draw_rectangle_filled(350, 380, 20, 350, arcade.color.BROWN)
+
+    # Base
+    arcade.draw_arc_filled(300, 280, 300, 200, arcade.color.BROWN, 180, 360)
+    arcade.draw_rectangle_filled(330, 300, 180, 40, arcade.color.WHITE)
+    arcade.draw_circle_filled(370, 295, 10, arcade.color.LIGHT_BLUE, num_segments=32)
+    arcade.draw_circle_filled(340, 295, 10, arcade.color.LIGHT_BLUE, num_segments=32)
+    arcade.draw_circle_filled(310, 295, 10, arcade.color.LIGHT_BLUE, num_segments=32)
+    arcade.draw_circle_filled(280, 295, 10, arcade.color.LIGHT_BLUE, num_segments=32)
+    arcade.draw_text("Seas the Day",
+                     355, 310,
+                     arcade.color.REDWOOD, 7)
 
 
 def birds(x, y):
@@ -70,15 +91,19 @@ class Bird:
 
         if self.position_x < self.radius:
             self.position_x = self.radius
+            arcade.play_sound(wall_hit_sound)
 
         if self.position_x > SCREEN_WIDTH - self.radius:
             self.position_x = SCREEN_WIDTH - self.radius
+            arcade.play_sound(wall_hit_sound)
 
         if self.position_y < self.radius:
             self.position_y = self.radius
+            arcade.play_sound(wall_hit_sound)
 
         if self.position_y > SCREEN_HEIGHT - self.radius:
             self.position_y = SCREEN_HEIGHT - self.radius
+            arcade.play_sound(wall_hit_sound)
 
 
 class MyGame(arcade.Window):
@@ -91,15 +116,16 @@ class MyGame(arcade.Window):
         super().__init__(SCREEN_WIDTH, SCREEN_HEIGHT, "Lab 7 - User Control")
 
         # Create our fish
-        self.fish = Fish(50, 50, 15, arcade.color.AUBURN)
+        self.fish = Fish(50, 50, 15, arcade.color.ORANGE)
         self.set_mouse_visible(False)
 
         # Create our bird
-        self.bird = Bird(50, 50, 0, 0, 15, arcade.color.AUBURN)
+        self.bird = Bird(500, 450, 0, 0, 15, arcade.color.BLACK)
 
     def on_draw(self):
         arcade.start_render()
         draw_water()
+        draw_sailboat()
         fish(50, 30)
         birds(450, 360)
         self.fish.draw()
@@ -112,9 +138,9 @@ class MyGame(arcade.Window):
     def on_mouse_press(self, x: float, y: float, button: int, modifiers: int):
 
         if button == arcade.MOUSE_BUTTON_LEFT:
-            print("Left button hit at, ", x, y)
+            arcade.play_sound(splash_sound)
         if button == arcade.MOUSE_BUTTON_RIGHT:
-            print("Right button hit at, ", x, y)
+            arcade.play_sound(bubble_sound)
 
     def on_key_press(self, key, modifiers):
         """ Called whenever the user presses a key. """
