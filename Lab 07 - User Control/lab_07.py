@@ -9,8 +9,8 @@ MOVEMENT_SPEED = 3
 
 # Sound Effects
 wall_hit_sound = arcade.load_sound(":resources:sounds/error3.wav")
-bubble_sound = arcade.load_sound(":resources:sounds/hit1.wav")
-splash_sound = arcade.load_sound(":resources:sounds/secret2.wav")
+right_sound = arcade.load_sound(":resources:sounds/hit1.wav")
+left_sound = arcade.load_sound(":resources:sounds/secret2.wav")
 
 
 def draw_water():
@@ -36,18 +36,6 @@ def draw_sailboat():
                      arcade.color.REDWOOD, 7)
 
 
-def birds(x, y):
-    arcade.draw_circle_filled(100 + x - 100, 300 + y - 300, 5, arcade.color.BLACK, num_segments=32)
-    arcade.draw_arc_outline(85 + x - 100, 300 + y - 300, 20, 15, arcade.color.BLACK, 0, 180, 5, 1)
-    arcade.draw_arc_outline(115 + x - 100, 300 + y - 300, 20, 15, arcade.color.BLACK, 0, 180, 5, 1)
-
-
-def fish(x, y):
-    arcade.draw_triangle_filled(34 + x - 43, 50 + y - 45, 20 + x - 43, 20 + y - 45, 10 + x - 43, 55 + y - 45, arcade.color.ORANGE)
-    arcade.draw_ellipse_filled(40 + x - 40, 50 + y - 50, 35, 25, arcade.color.ORANGE)
-    arcade.draw_circle_filled(45 + x - 40, 55 + y - 52, 3, arcade.color.BLACK, num_segments=32)
-
-
 class Fish:
     def __init__(self, position_x, position_y, radius, color):
 
@@ -60,10 +48,13 @@ class Fish:
 
     def draw(self):
         """ Draw the balls with the instance variables we have. """
-        arcade.draw_triangle_filled(34 + self.position_x - 43, 50 + self.position_y - 45, 20 + self.position_x - 43, 20 + self.position_y - 45, 10 + self.position_x - 43, 55 + self.position_y - 45,
+        arcade.draw_triangle_filled(34 + self.position_x - 43, 50 + self.position_y - 45, 20 + self.position_x - 43,
+                                    20 + self.position_y - 45, 10 + self.position_x - 43, 55 + self.position_y - 45,
                                     arcade.color.ORANGE)
-        arcade.draw_ellipse_filled(40 + self.position_x - 40, 50 + self.position_y - 50, 35, 25, arcade.color.ORANGE)
-        arcade.draw_circle_filled(45 + self.position_x - 40, 55 + self.position_y - 52, 3, arcade.color.BLACK, num_segments = 32)
+        arcade.draw_ellipse_filled(40 + self.position_x - 40, 50 + self.position_y - 50, 35, 25,
+                                   arcade.color.ORANGE)
+        arcade.draw_circle_filled(45 + self.position_x - 40, 55 + self.position_y - 52, 3,
+                                  arcade.color.BLACK, num_segments=32)
 
 
 class Bird:
@@ -80,9 +71,12 @@ class Bird:
 
     def draw(self):
         """ Draw the balls with the instance variables we have. """
-        arcade.draw_circle_filled(100 + self.position_x - 100, 300 + self.position_y - 300, 5, arcade.color.BLACK, num_segments=32)
-        arcade.draw_arc_outline(85 + self.position_x - 100, 300 + self.position_y - 300, 20, 15, arcade.color.BLACK, 0, 180, 5, 1)
-        arcade.draw_arc_outline(115 + self.position_x - 100, 300 + self.position_y - 300, 20, 15, arcade.color.BLACK, 0, 180, 5, 1)
+        arcade.draw_circle_filled(100 + self.position_x - 100, 300 + self.position_y - 300, 5,
+                                  arcade.color.BLACK, num_segments=32)
+        arcade.draw_arc_outline(85 + self.position_x - 100, 300 + self.position_y - 300, 20, 15,
+                                arcade.color.BLACK, 0, 180, 5, 1)
+        arcade.draw_arc_outline(115 + self.position_x - 100, 300 + self.position_y - 300, 20, 15,
+                                arcade.color.BLACK, 0, 180, 5, 1)
 
     def update(self):
         # Move the bird
@@ -126,8 +120,6 @@ class MyGame(arcade.Window):
         arcade.start_render()
         draw_water()
         draw_sailboat()
-        fish(50, 30)
-        birds(450, 360)
         self.fish.draw()
         self.bird.draw()
 
@@ -138,9 +130,9 @@ class MyGame(arcade.Window):
     def on_mouse_press(self, x: float, y: float, button: int, modifiers: int):
 
         if button == arcade.MOUSE_BUTTON_LEFT:
-            arcade.play_sound(splash_sound)
+            arcade.play_sound(left_sound)
         if button == arcade.MOUSE_BUTTON_RIGHT:
-            arcade.play_sound(bubble_sound)
+            arcade.play_sound(right_sound)
 
     def on_key_press(self, key, modifiers):
         """ Called whenever the user presses a key. """
