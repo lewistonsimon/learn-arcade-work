@@ -46,8 +46,8 @@ class Player(arcade.Sprite):
         if self.position_y < self.radius:
             self.position_y = self.radius
 
-        if self.position_y > SCREEN_HEIGHT - self.radius:
-            self.position_y = SCREEN_HEIGHT - self.radius
+        if self.position_y > SCREEN_HEIGHT:
+            self.position_y = SCREEN_HEIGHT
 
 
 
