@@ -1,7 +1,6 @@
 import random
 import arcade
 import math
-import os
 
 SPRITE_SCALING = 0.5
 GOOD_SCALE = 0.1
@@ -10,45 +9,29 @@ BAD_SCALE = .3
 SCREEN_WIDTH = 800
 SCREEN_HEIGHT = 600
 
-MOVEMENT_SPEED = 3
+MOVEMENT_SPEED = 2.5
+GOOD_SPEED = 4
 
 
 class Player(arcade.Sprite):
-    def __init__(self, position_x, position_y, change_x, change_y, radius, color):
-
-        # Take the parameters of the init function above,
-        # and create instance variables out of them.
-        self.position_x = position_x
-        self.position_y = position_y
-        self.change_x = change_x
-        self.change_y = change_y
-        self.radius = radius
-        self.color = color
-
-    def draw(self):
-        """ Draw the balls with the instance variables we have. """
-        arcade.draw_circle_filled(self.position_x,
-                                  self.position_y,
-                                  self.radius,
-                                  self.color)
 
     def update(self):
-        # Move the ball
-        self.position_y += self.change_y
-        self.position_x += self.change_x
+        """ Move the player """
+        # Move player.
+        # Remove these lines if physics engine is moving player.
+        self.center_x += self.change_x
+        self.center_y += self.change_y
 
-        if self.position_x < self.radius:
-            self.position_x = self.radius
+        # Check for out-of-bounds
+        if self.left < 0:
+            self.left = 0
+        elif self.right > SCREEN_WIDTH - 1:
+            self.right = SCREEN_WIDTH - 1
 
-        if self.position_x > SCREEN_WIDTH - self.radius:
-            self.position_x = SCREEN_WIDTH - self.radius
-
-        if self.position_y < self.radius:
-            self.position_y = self.radius
-
-        if self.position_y > SCREEN_HEIGHT - self.radius:
-            self.position_y = SCREEN_HEIGHT - self.radius
-
+        if self.bottom < 0:
+            self.bottom = 0
+        elif self.top > SCREEN_HEIGHT - 1:
+            self.top = SCREEN_HEIGHT - 1
 
 
 class Bad(arcade.Sprite):
@@ -65,7 +48,7 @@ class Bad(arcade.Sprite):
         self.circle_radius = 0
 
         # How fast to orbit, in radians per frame
-        self.circle_speed = 0.008
+        self.circle_speed = .01
 
         # Set the center of the point we will orbit around
         self.circle_center_x = 0
@@ -95,11 +78,11 @@ class Good(arcade.Sprite):
 
     def update(self):
 
-        # Move the coin
+        # Moving the taco.
         self.center_x += self.change_x
         self.center_y += self.change_y
 
-        # If we are out-of-bounds, then 'bounce'
+        # Bounce off the walls.
         if self.left < 0:
             self.change_x *= -1
 
@@ -120,12 +103,9 @@ class MyGame(arcade.Window):
 
         super().__init__(width, height)
 
-
-        file_path = os.path.dirname(os.path.abspath(__file__))
-        os.chdir(file_path)
-
         # Sprite lists
         self.all_sprites_list = None
+        self.player_list = None
         self.bad_list = None
         self.good_list = None
 
@@ -138,17 +118,21 @@ class MyGame(arcade.Window):
 
         # Sprite lists
         self.all_sprites_list = arcade.SpriteList()
+        self.player_list = arcade.SpriteList()
         self.bad_list = arcade.SpriteList()
         self.good_list = arcade.SpriteList()
 
-        # Set up the player
+
         self.score = 0
-        # Character image from kenney.nl
+        # malePerson image from kenney.nl
         self.player_sprite = arcade.Sprite("malePerson_walk5.png",
                                            SPRITE_SCALING)
         self.player_sprite.center_x = 50
         self.player_sprite.center_y = 70
-        self.all_sprites_list.append(self.player_sprite)
+        self.player_list.append(self.player_sprite)
+
+        self.all_sprites_list.append(player_sprite)
+        self.player_list.append(player_sprite)
 
         for i in range(50):
 
@@ -171,15 +155,13 @@ class MyGame(arcade.Window):
             self.bad_list.append(bad)
 
         for i in range(50):
-            # Create the coin instance
-            # Coin image from kenney.nl
+            # I found the taco image at
             good = Good("taco-155812__340.png", GOOD_SCALE)
 
-            # Position the coin
             good.center_x = random.randrange(SCREEN_WIDTH)
             good.center_y = random.randrange(SCREEN_HEIGHT)
-            good.change_x = random.randrange(-3, 4)
-            good.change_y = random.randrange(-3, 4)
+            good.change_x = random.randrange(GOOD_SPEED)
+            good.change_y = random.randrange(GOOD_SPEED)
 
             self.all_sprites_list.append(good)
             self.good_list.append(good)
@@ -194,6 +176,8 @@ class MyGame(arcade.Window):
 
         # Draw all the sprites.
         self.all_sprites_list.draw()
+
+        self.player_list.draw()
 
         # Put the text on the screen.
         output = "Score: " + str(self.score)
@@ -225,18 +209,22 @@ class MyGame(arcade.Window):
 
     def on_update(self, delta_time):
 
-        self.all_sprites_list.update()
+        self.player_list.update()
 
+
+        self.all_sprites_list.update()
 
         hit_list = arcade.check_for_collision_with_list(self.player_sprite, self.good_list)
         for good in hit_list:
             print("hi")
+            # play sound
             self.score += 1
             good.remove_from_sprite_lists()
 
         hit_list = arcade.check_for_collision_with_list(self.player_sprite, self.bad_list)
         for bad in hit_list:
             print("bye")
+            # play sound
             self.score -= 1
             bad.remove_from_sprite_lists()
 
