@@ -5,12 +5,12 @@ import math
 SPRITE_SCALING = 0.5
 GOOD_SCALE = 0.1
 BAD_SCALE = .3
-
 SCREEN_WIDTH = 800
 SCREEN_HEIGHT = 600
-
 MOVEMENT_SPEED = 2.5
 GOOD_SPEED = 4
+GOOD_COUNT = 50
+BAD_COUNT = 50
 
 
 class Player(arcade.Sprite):
@@ -104,10 +104,10 @@ class MyGame(arcade.Window):
         super().__init__(width, height)
 
         # Sprite lists
-        self.all_sprites_list = None
         self.player_list = None
         self.bad_list = None
         self.good_list = None
+        self.good_sprite_list = None
 
         # Set up the player
         self.score = 0
@@ -117,15 +117,14 @@ class MyGame(arcade.Window):
         """ Set up the game and initialize the variables. """
 
         # Sprite lists
-        self.all_sprites_list = arcade.SpriteList()
         self.player_list = arcade.SpriteList()
         self.bad_list = arcade.SpriteList()
         self.good_list = arcade.SpriteList()
+        self.good_sprite_list = arcade.SpriteList()
 
         self.score = 0
         # malePerson image from kenney.nl
-        self.player_sprite = arcade.Sprite("malePerson_walk5.png",
-                                           SPRITE_SCALING)
+        self.player_sprite = Player("malePerson_walk5.png", SPRITE_SCALING)
         self.player_sprite.center_x = 50
         self.player_sprite.center_y = 70
         self.player_list.append(self.player_sprite)
@@ -146,8 +145,6 @@ class MyGame(arcade.Window):
             # Random start angle from 0 to 2pi
             bad.circle_angle = random.random() * 2 * math.pi
 
-            # Add the bad to the lists
-            self.all_sprites_list.append(bad)
             self.bad_list.append(bad)
 
         for i in range(1):
@@ -159,8 +156,7 @@ class MyGame(arcade.Window):
             good.change_x = random.randrange(GOOD_SPEED)
             good.change_y = random.randrange(GOOD_SPEED)
 
-            self.all_sprites_list.append(good)
-            self.good_list.append(good)
+            self.good_sprite_list.append(good)
 
         # Set the background color
         arcade.set_background_color(arcade.color.SKY_BLUE)
@@ -171,9 +167,10 @@ class MyGame(arcade.Window):
         arcade.start_render()
 
         # Draw all the sprites.
-        self.all_sprites_list.draw()
 
         self.player_list.draw()
+        self.good_sprite_list.draw()
+        self.bad_list.draw()
 
         # Put the text on the screen.
         output = "Score: " + str(self.score)
@@ -181,15 +178,16 @@ class MyGame(arcade.Window):
 
     def on_update(self, delta_time):
 
-        self.player_list.update()
+        self.good_sprite_list.update()
 
-        if len(self.good_list) > 0:
-            self.all_sprites_list.update()
+        if len(self.good_sprite_list) > 0:
+            self.player_list.update()
+            self.bad_list.update()
         else:
-            output = "Score: " + str(self.score)
-            arcade.draw_text(output, 10, 20, arcade.color.WHITE, 14)
+            output = "Game Over"
+            arcade.draw_text(output, 400, 300, arcade.color.WHITE, 18)
 
-        hit_list = arcade.check_for_collision_with_list(self.player_sprite, self.good_list)
+        hit_list = arcade.check_for_collision_with_list(self.player_sprite, self.good_sprite_list)
         for good in hit_list:
             print("hi")
             # play sound
@@ -218,10 +216,6 @@ class MyGame(arcade.Window):
 
     def on_key_release(self, key, modifiers):
 
-        # If a player releases a key, zero out the speed.
-        # This doesn't work well if multiple keys are pressed.
-        # Use 'better move by keyboard' example if you need to
-        # handle this.
         if key == arcade.key.UP or key == arcade.key.DOWN:
             self.player_sprite.change_y = 0
         elif key == arcade.key.LEFT or key == arcade.key.RIGHT:
