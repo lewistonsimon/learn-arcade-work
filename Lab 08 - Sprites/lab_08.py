@@ -124,7 +124,6 @@ class MyGame(arcade.Window):
         self.bad_list = arcade.SpriteList()
         self.good_list = arcade.SpriteList()
 
-
         self.score = 0
         # malePerson image from kenney.nl
         self.player_sprite = arcade.Sprite("malePerson_walk5.png",
@@ -132,9 +131,6 @@ class MyGame(arcade.Window):
         self.player_sprite.center_x = 50
         self.player_sprite.center_y = 70
         self.player_list.append(self.player_sprite)
-
-        self.all_sprites_list.append(player_sprite)
-        self.player_list.append(player_sprite)
 
         for i in range(50):
 
@@ -156,7 +152,7 @@ class MyGame(arcade.Window):
             self.all_sprites_list.append(bad)
             self.bad_list.append(bad)
 
-        for i in range(50):
+        for i in range(1):
             # I found the taco image at
             good = Good("taco-155812__340.png", GOOD_SCALE)
 
@@ -184,6 +180,30 @@ class MyGame(arcade.Window):
         # Put the text on the screen.
         output = "Score: " + str(self.score)
         arcade.draw_text(output, 10, 20, arcade.color.WHITE, 14)
+
+    def on_update(self, delta_time):
+
+        self.player_list.update()
+
+        if len(self.good_list) > 0:
+            self.all_sprites_list.update()
+        else:
+            output = "Score: " + str(self.score)
+            arcade.draw_text(output, 10, 20, arcade.color.WHITE, 14)
+
+        hit_list = arcade.check_for_collision_with_list(self.player_sprite, self.good_list)
+        for good in hit_list:
+            print("hi")
+            # play sound
+            self.score += 1
+            good.remove_from_sprite_lists()
+
+        hit_list = arcade.check_for_collision_with_list(self.player_sprite, self.bad_list)
+        for bad in hit_list:
+            print("bye")
+            # play sound
+            self.score -= 1
+            bad.remove_from_sprite_lists()
 
     def on_key_press(self, key, modifiers):
         """Called whenever a key is pressed. """

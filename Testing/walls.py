@@ -10,6 +10,7 @@ SCREEN_WIDTH = 800
 SCREEN_HEIGHT = 600
 
 MOVEMENT_SPEED = 5
+CAMERA_SPEED = 1
 
 
 class MyGame(arcade.Window):
@@ -26,6 +27,13 @@ class MyGame(arcade.Window):
         self.player_sprite = None
 
         self.physics_engine = None
+
+        self.score = 0
+
+        # Create the cameras. One for the GUI, one for the sprites.
+        # We scroll the 'sprite world' but not the GUI.
+        self.camera_for_sprites = arcade.Camera(SCREEN_WIDTH, SCREEN_HEIGHT)
+        self.camera_for_gui = arcade.Camera(SCREEN_WIDTH, SCREEN_HEIGHT)
 
     def setup(self):
         # Set the background color
@@ -79,11 +87,22 @@ class MyGame(arcade.Window):
     def on_update(self, delta_time):
         self.physics_engine.update()
 
+        lower_left_corner = (self.player_sprite.center_x - self.width / 2,
+                             self.player_sprite.center_y - self.height / 2)
+        self.camera_for_sprites.move_to(lower_left_corner, CAMERA_SPEED)
 
     def on_draw(self):
         arcade.start_render()
+
+        # Select the scrolled camera for our sprites
+        self.camera_for_sprites.use()
+
         self.wall_list.draw()
         self.player_sprite.draw()
+
+        # Select the (unscrolled) camera for our GUI
+        self.camera_for_gui.use()
+        arcade.draw_text(f"Score: {self.score}", 10, 10, arcade.color.WHITE, 24)
 
     def on_key_press(self, key, modifiers):
         if key == arcade.key.UP:
