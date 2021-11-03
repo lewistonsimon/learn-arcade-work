@@ -183,20 +183,17 @@ class MyGame(arcade.Window):
         if len(self.good_sprite_list) > 0:
             self.player_list.update()
             self.bad_list.update()
-        else:
-            output = "Game Over"
-            arcade.draw_text(output, 400, 300, arcade.color.WHITE, 18)
+        elif len(self.good_sprite_list) == 0:
+            arcade.draw_text("Game Over", SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, arcade.color.WHITE, 18)
 
         hit_list = arcade.check_for_collision_with_list(self.player_sprite, self.good_sprite_list)
         for good in hit_list:
-            print("hi")
             # play sound
             self.score += 1
             good.remove_from_sprite_lists()
 
         hit_list = arcade.check_for_collision_with_list(self.player_sprite, self.bad_list)
         for bad in hit_list:
-            print("bye")
             # play sound
             self.score -= 1
             bad.remove_from_sprite_lists()
