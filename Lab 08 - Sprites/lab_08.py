@@ -9,8 +9,8 @@ SCREEN_WIDTH = 800
 SCREEN_HEIGHT = 600
 MOVEMENT_SPEED = 2.5
 GOOD_SPEED = 4
-GOOD_COUNT = 50
-BAD_COUNT = 50
+GOOD_COUNT = 35
+BAD_COUNT = 35
 
 
 class Player(arcade.Sprite):
@@ -22,8 +22,6 @@ class Player(arcade.Sprite):
         self.center_x += self.change_x
         self.center_y += self.change_y
 
-        if self.position_y > SCREEN_HEIGHT:
-            self.position_y = SCREEN_HEIGHT
         # Check for out-of-bounds
         if self.left < 0:
             self.left = 0
@@ -131,9 +129,9 @@ class MyGame(arcade.Window):
         self.player_sprite.center_y = 70
         self.player_list.append(self.player_sprite)
 
-        for i in range(50):
+        for i in range(BAD_COUNT):
 
-            # Create the bad objects
+            # Create the bad instance
             # Bad image from kenney.nl
             bad = Bad("bee.png", BAD_SCALE)
 
@@ -149,7 +147,7 @@ class MyGame(arcade.Window):
 
             self.bad_list.append(bad)
 
-        for i in range(1):
+        for i in range(GOOD_COUNT):
             # I found the taco image at
             good = Good("taco-155812__340.png", GOOD_SCALE)
 
@@ -178,6 +176,10 @@ class MyGame(arcade.Window):
         output = "Score: " + str(self.score)
         arcade.draw_text(output, 10, 20, arcade.color.WHITE, 14)
 
+        if len(self.good_sprite_list) == 0:
+            end = "Game Over"
+            arcade.draw_text(end, SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, arcade.color.WHITE, 50, anchor_x="center")
+
     def on_update(self, delta_time):
 
         self.good_sprite_list.update()
@@ -185,20 +187,15 @@ class MyGame(arcade.Window):
         if len(self.good_sprite_list) > 0:
             self.player_list.update()
             self.bad_list.update()
-        else:
-            output = "Game Over"
-            arcade.draw_text(output, 400, 300, arcade.color.WHITE, 18)
 
         hit_list = arcade.check_for_collision_with_list(self.player_sprite, self.good_sprite_list)
         for good in hit_list:
-            print("hi")
             # play sound
             self.score += 1
             good.remove_from_sprite_lists()
 
         hit_list = arcade.check_for_collision_with_list(self.player_sprite, self.bad_list)
         for bad in hit_list:
-            print("bye")
             # play sound
             self.score -= 1
             bad.remove_from_sprite_lists()
@@ -222,26 +219,6 @@ class MyGame(arcade.Window):
             self.player_sprite.change_y = 0
         elif key == arcade.key.LEFT or key == arcade.key.RIGHT:
             self.player_sprite.change_x = 0
-
-    def on_update(self, delta_time):
-
-        self.player_list.update()
-
-        self.all_sprites_list.update()
-
-        hit_list = arcade.check_for_collision_with_list(self.player_sprite, self.good_list)
-        for good in hit_list:
-            print("hi")
-            # play sound
-            self.score += 1
-            good.remove_from_sprite_lists()
-
-        hit_list = arcade.check_for_collision_with_list(self.player_sprite, self.bad_list)
-        for bad in hit_list:
-            print("bye")
-            # play sound
-            self.score -= 1
-            bad.remove_from_sprite_lists()
 
 
 def main():
