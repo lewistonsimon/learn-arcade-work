@@ -12,6 +12,10 @@ GOOD_SPEED = 4
 GOOD_COUNT = 35
 BAD_COUNT = 35
 
+# Sound Effects
+good_sound = arcade.load_sound(":resources:sounds/coin3.wav")
+bad_sound = arcade.load_sound(":resources:sounds/hurt2.wav")
+
 
 class Player(arcade.Sprite):
 
@@ -148,7 +152,7 @@ class MyGame(arcade.Window):
             self.bad_list.append(bad)
 
         for i in range(GOOD_COUNT):
-            # I found the taco image at
+            # I found the taco image from OpenClipart-Vectors, pixabay.com
             good = Good("taco-155812__340.png", GOOD_SCALE)
 
             good.center_x = random.randrange(SCREEN_WIDTH)
@@ -188,15 +192,18 @@ class MyGame(arcade.Window):
             self.player_list.update()
             self.bad_list.update()
 
+        elif len(self.good_sprite_list) == 0:
+            arcade.draw_text("Game Over", SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, arcade.color.WHITE, 18)
+
         hit_list = arcade.check_for_collision_with_list(self.player_sprite, self.good_sprite_list)
         for good in hit_list:
-            # play sound
+            arcade.play_sound(good_sound, 1)
             self.score += 1
             good.remove_from_sprite_lists()
 
         hit_list = arcade.check_for_collision_with_list(self.player_sprite, self.bad_list)
         for bad in hit_list:
-            # play sound
+            arcade.play_sound(bad_sound, 25)
             self.score -= 1
             bad.remove_from_sprite_lists()
 
