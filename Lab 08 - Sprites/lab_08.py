@@ -9,8 +9,8 @@ SCREEN_WIDTH = 800
 SCREEN_HEIGHT = 600
 MOVEMENT_SPEED = 2.5
 GOOD_SPEED = 4
-GOOD_COUNT = 35
-BAD_COUNT = 35
+GOOD_COUNT = 50
+BAD_COUNT = 50
 
 # Sound Effects
 good_sound = arcade.load_sound(":resources:sounds/coin3.wav")
