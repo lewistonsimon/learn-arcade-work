@@ -102,7 +102,12 @@ class MyGame(arcade.Window):
                            [484, 392],
                            [686, 200],
                            [686, 264],
-                           [686, 328]]
+                           [686, 328],
+                           [612, 776],
+                           [484, 904],
+                           [548, 904],
+                           [612, 904],
+                           [676, 904]]
 
         for coordinate in coordinate_list:
             wall = arcade.Sprite("grassCenter_round.png", SPRITE_SCALING_BOX)
