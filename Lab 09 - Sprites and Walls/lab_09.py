@@ -95,7 +95,7 @@ class MyGame(arcade.Window):
             wall.center_y = y
             self.wall_list.append(wall)
 
-        # Walls inside
+        # Walls Dirt blocks
         coordinate_list = [[484, 200],
                            [484, 264],
                            [484, 328],

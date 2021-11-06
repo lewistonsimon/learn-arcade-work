@@ -153,7 +153,7 @@ class MyGame(arcade.Window):
 
         for i in range(GOOD_COUNT):
             # I found the taco image from OpenClipart-Vectors, pixabay.com
-            good = Good("taco-155812__340.png", GOOD_SCALE)
+            good = Good("../Lab 09 - Sprites and Walls/taco-155812__340.png", GOOD_SCALE)
 
             good.center_x = random.randrange(SCREEN_WIDTH)
             good.center_y = random.randrange(SCREEN_HEIGHT)
