@@ -40,3 +40,24 @@ def main():
 
 
 main()
+
+
+
+# How many elements would I have to check on average (100)
+# 100 / 2 = 50
+# worst case
+# 100
+# best case
+# 1
+# not in list
+# 100
+
+# Number of items in the list is n
+# Average
+# n / 2
+# Worst case
+# n
+# best case
+# 1
+# not in list
+# n
