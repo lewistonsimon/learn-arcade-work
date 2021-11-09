@@ -6,7 +6,6 @@ TACO_SCALING = .1
 
 DEFAULT_SCREEN_WIDTH = 800
 DEFAULT_SCREEN_HEIGHT = 600
-SCREEN_TITLE = "Sprite Move with Scrolling Screen Example"
 SPRITE_SCALING_BOX = .5
 SPRITE_SCALING_PLAYER = .5
 TACO_COUNT = 1
@@ -16,14 +15,15 @@ CAMERA_SPEED = 0.1
 
 collect_sound = arcade.load_sound(":resources:sounds/coin2.wav")
 
+
 class MyGame(arcade.Window):
     """ Main application class. """
 
-    def __init__(self, width, height, title):
+    def __init__(self, width, height):
         """
         Initializer
         """
-        super().__init__(width, height, title, resizable=True)
+        super().__init__(width, height, resizable=True)
 
         # Sprite lists
         self.player_list = None
@@ -256,6 +256,30 @@ class MyGame(arcade.Window):
 
             self.taco_list.append(taco)
 
+            item_list = [[420, 840],
+                         [292, 1032],
+                         [1700, 200],
+                         [1700, 1032],
+                         [1508, 328],
+                         [1316, 200],
+                         [548, 200],
+                         [548, 520],
+                         [676, 456],
+                         [1060, 328],
+                         [740, 648],
+                         [932, 648],
+                         [1124, 712],
+                         [1444, 648],
+                         [612, 968],
+                         [1380, 968]]
+
+            for item in item_list:
+                taco = arcade.Sprite("taco-155812__340.png", TACO_SCALING)
+                taco.center_x = item[0]
+                taco.center_y = item[1]
+
+                self.taco_list.append(taco)
+
         self.physics_engine = arcade.PhysicsEngineSimple(self.player_sprite, self.wall_list)
 
         # Set the background color
@@ -277,7 +301,7 @@ class MyGame(arcade.Window):
         self.player_list.draw()
         self.taco_list.draw()
 
-        # Select the (unscrolled) camera for our GUI
+        # Camera for our GUI
         self.camera_gui.use()
 
         # Draw the GUI
@@ -294,7 +318,8 @@ class MyGame(arcade.Window):
         arcade.draw_text(output, 10, 40, arcade.color.WHITE, 14)
 
         if len(self.taco_list) == 0:
-            arcade.draw_text("Game Over", DEFAULT_SCREEN_WIDTH / 2, DEFAULT_SCREEN_HEIGHT / 2, arcade.color.RED, 50, anchor_x="center")
+            arcade.draw_text("Game Over", DEFAULT_SCREEN_WIDTH / 2, DEFAULT_SCREEN_HEIGHT / 2,
+                             arcade.color.RED, 50, anchor_x="center")
 
     def on_update(self, delta_time):
         """ Movement and game logic """
@@ -356,7 +381,7 @@ class MyGame(arcade.Window):
 
 def main():
     """ Main function """
-    window = MyGame(DEFAULT_SCREEN_WIDTH, DEFAULT_SCREEN_HEIGHT, SCREEN_TITLE)
+    window = MyGame(DEFAULT_SCREEN_WIDTH, DEFAULT_SCREEN_HEIGHT)
     window.setup()
     arcade.run()
 
