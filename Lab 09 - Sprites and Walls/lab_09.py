@@ -9,18 +9,12 @@ DEFAULT_SCREEN_HEIGHT = 600
 SCREEN_TITLE = "Sprite Move with Scrolling Screen Example"
 SPRITE_SCALING_BOX = .5
 SPRITE_SCALING_PLAYER = .5
-TACO_COUNT = 45
-
-# How many pixels to keep as a minimum margin between the character
-# and the edge of the screen.
+TACO_COUNT = 1
+PLAYER_MOVEMENT_SPEED = 5
 VIEWPORT_MARGIN = 220
-
-# How fast the camera pans to the player. 1.0 is instant.
 CAMERA_SPEED = 0.1
 
-# How fast the character moves
-PLAYER_MOVEMENT_SPEED = 15
-
+collect_sound = arcade.load_sound(":resources:sounds/coin2.wav")
 
 class MyGame(arcade.Window):
     """ Main application class. """
@@ -143,7 +137,66 @@ class MyGame(arcade.Window):
                            [1384, 712],
                            [1384, 776],
                            [676, 584],
-                           [740, 584]]
+                           [740, 584],
+                           [1572, 392],
+                           [1508, 392],
+                           [1444, 392],
+                           [1380, 392],
+                           [1316, 392],
+                           [1188, 392],
+                           [1188, 328],
+                           [1188, 456],
+                           [1572, 520],
+                           [1508, 520],
+                           [1444, 520],
+                           [1380, 520],
+                           [1316, 520],
+                           [1636, 392],
+                           [1636, 328],
+                           [1636, 264],
+                           [1636, 200],
+                           [1060, 520],
+                           [1060, 456],
+                           [1060, 392],
+                           [996, 456],
+                           [996, 520],
+                           [932, 520],
+                           [676, 392],
+                           [292, 328],
+                           [292, 392],
+                           [356, 392],
+                           [356, 520],
+                           [420, 520],
+                           [420, 584],
+                           [420, 648],
+                           [420, 712],
+                           [292, 648],
+                           [292, 712],
+                           [356, 840],
+                           [356, 904],
+                           [356, 968],
+                           [548, 264],
+                           [548, 328],
+                           [548, 392],
+                           [612, 520],
+                           [676, 520],
+                           [548, 648],
+                           [1700, 968],
+                           [1636, 968],
+                           [1636, 904],
+                           [1700, 904],
+                           [1636, 840],
+                           [1700, 840],
+                           [1636, 776],
+                           [1700, 776],
+                           [1636, 712],
+                           [1700, 712],
+                           [1636, 712],
+                           [1700, 648],
+                           [1636, 648],
+                           [1700, 584],
+                           [1508, 712],
+                           [1508, 776]]
 
         for coordinate in coordinate_list:
             wall = arcade.Sprite("stoneMid.png", SPRITE_SCALING_BOX)
@@ -152,6 +205,12 @@ class MyGame(arcade.Window):
             self.wall_list.append(wall)
 
         # Top most row
+        for x in range(484, 1572, 64):
+            wall = arcade.Sprite("spikes.png", SPRITE_SCALING_BOX, flipped_vertically=True)
+            wall.center_x = x
+            wall.center_y = 1032
+            self.wall_list.append(wall)
+
         for x in range(484, 1572, 64):
             wall = arcade.Sprite("stoneMid.png", SPRITE_SCALING_BOX)
             wall.center_x = x
@@ -186,7 +245,7 @@ class MyGame(arcade.Window):
 
             while not taco_placed_successfully:
                 taco.center_x = random.randrange(228, 1764)
-                taco.center_y = random.randrange(136, 1160)
+                taco.center_y = random.randrange(136, 1096)
 
                 wall_hit_list = arcade.check_for_collision_with_list(taco, self.wall_list)
 
@@ -200,7 +259,7 @@ class MyGame(arcade.Window):
         self.physics_engine = arcade.PhysicsEngineSimple(self.player_sprite, self.wall_list)
 
         # Set the background color
-        arcade.set_background_color(arcade.color.SKY_BLUE)
+        arcade.set_background_color(arcade.color.DARK_BLUE)
 
     def on_draw(self):
         """
@@ -234,6 +293,25 @@ class MyGame(arcade.Window):
         output = "Score: " + str(self.score)
         arcade.draw_text(output, 10, 40, arcade.color.WHITE, 14)
 
+        if len(self.taco_list) == 0:
+            arcade.draw_text("Game Over", DEFAULT_SCREEN_WIDTH / 2, DEFAULT_SCREEN_HEIGHT / 2, arcade.color.RED, 50, anchor_x="center")
+
+    def on_update(self, delta_time):
+        """ Movement and game logic """
+
+        self.taco_list.update()
+
+        if len(self.taco_list) > 0:
+            self.player_list.update()
+            self.scroll_to_player()
+            self.physics_engine.update()
+
+        hit_list = arcade.check_for_collision_with_list(self.player_sprite, self.taco_list)
+        for taco in hit_list:
+            self.score += 1
+            arcade.play_sound(collect_sound)
+            taco.remove_from_sprite_lists()
+
     def on_key_press(self, key, modifiers):
         """Called whenever a key is pressed. """
 
@@ -253,24 +331,6 @@ class MyGame(arcade.Window):
             self.player_sprite.change_y = 0
         elif key == arcade.key.LEFT or key == arcade.key.RIGHT:
             self.player_sprite.change_x = 0
-
-    def on_update(self, delta_time):
-        """ Movement and game logic """
-
-        self.player_list.update()
-        self.taco_list.update()
-
-        hit_list = arcade.check_for_collision_with_list(self.player_sprite, self.taco_list)
-        for taco in hit_list:
-            self.score += 1
-            taco.remove_from_sprite_lists()
-
-        # Call update on all sprites (The sprites don't do much in this
-        # example though.)
-        self.physics_engine.update()
-
-        # Scroll the screen to the player
-        self.scroll_to_player()
 
     def scroll_to_player(self):
         """
