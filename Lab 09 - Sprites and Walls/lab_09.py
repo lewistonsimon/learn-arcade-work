@@ -8,7 +8,7 @@ DEFAULT_SCREEN_WIDTH = 800
 DEFAULT_SCREEN_HEIGHT = 600
 SPRITE_SCALING_BOX = .5
 SPRITE_SCALING_PLAYER = .5
-TACO_COUNT = 1
+TACO_COUNT = 13
 PLAYER_MOVEMENT_SPEED = 5
 VIEWPORT_MARGIN = 220
 CAMERA_SPEED = 0.1
@@ -84,7 +84,7 @@ class MyGame(arcade.Window):
 
         # Top
         for x in range(228, 1764, 64):
-            wall = arcade.Sprite("grassCenter_round.png", SPRITE_SCALING_BOX)
+            wall = arcade.Sprite("stoneMid.png", SPRITE_SCALING_BOX)
             wall.center_x = x
             wall.center_y = 1096
             self.wall_list.append(wall)
@@ -198,13 +198,13 @@ class MyGame(arcade.Window):
                            [1508, 712],
                            [1508, 776]]
 
+        # Rows in order from top to bottom
         for coordinate in coordinate_list:
-            wall = arcade.Sprite("stoneMid.png", SPRITE_SCALING_BOX)
+            wall = arcade.Sprite("stoneCenter.png", SPRITE_SCALING_BOX)
             wall.center_x = coordinate[0]
             wall.center_y = coordinate[1]
             self.wall_list.append(wall)
 
-        # Top most row
         for x in range(484, 1572, 64):
             wall = arcade.Sprite("spikes.png", SPRITE_SCALING_BOX, flipped_vertically=True)
             wall.center_x = x
@@ -212,32 +212,31 @@ class MyGame(arcade.Window):
             self.wall_list.append(wall)
 
         for x in range(484, 1572, 64):
-            wall = arcade.Sprite("stoneMid.png", SPRITE_SCALING_BOX)
+            wall = arcade.Sprite("stoneCenter.png", SPRITE_SCALING_BOX)
             wall.center_x = x
             wall.center_y = 904
             self.wall_list.append(wall)
 
         for x in range(740, 1316, 64):
-            wall = arcade.Sprite("stoneMid.png", SPRITE_SCALING_BOX)
+            wall = arcade.Sprite("stoneCenter.png", SPRITE_SCALING_BOX)
             wall.center_x = x
             wall.center_y = 776
             self.wall_list.append(wall)
 
-        # Eight rows from the bottom
         for x in range(868, 1572, 64):
-            wall = arcade.Sprite("stoneMid.png", SPRITE_SCALING_BOX)
+            wall = arcade.Sprite("stoneCenter.png", SPRITE_SCALING_BOX)
             wall.center_x = x
             wall.center_y = 584
             self.wall_list.append(wall)
 
-        # Two walls up from bottom
         for x in range(996, 1572, 64):
-            wall = arcade.Sprite("stoneMid.png", SPRITE_SCALING_BOX)
+            wall = arcade.Sprite("stoneCenter.png", SPRITE_SCALING_BOX)
             wall.center_x = x
             wall.center_y = 264
             self.wall_list.append(wall)
 
-        # Placing down the tacos
+        # Placing down the tacos at random
+        # I found the taco image from OpenClipart-Vectors, pixabay.com
         for i in range(TACO_COUNT):
             taco = arcade.Sprite("taco-155812__340.png", TACO_SCALING)
 
@@ -256,34 +255,39 @@ class MyGame(arcade.Window):
 
             self.taco_list.append(taco)
 
-            item_list = [[420, 840],
-                         [292, 1032],
-                         [1700, 200],
-                         [1700, 1032],
-                         [1508, 328],
-                         [1316, 200],
-                         [548, 200],
-                         [548, 520],
-                         [676, 456],
-                         [1060, 328],
-                         [740, 648],
-                         [932, 648],
-                         [1124, 712],
-                         [1444, 648],
-                         [612, 968],
-                         [1380, 968]]
+        item_list = [[420, 840],
+                     [292, 1032],
+                     [1700, 200],
+                     [1700, 1032],
+                     [1508, 328],
+                     [1316, 200],
+                     [548, 200],
+                     [548, 520],
+                     [676, 456],
+                     [1060, 328],
+                     [740, 648],
+                     [932, 648],
+                     [1124, 712],
+                     [1444, 648],
+                     [612, 968],
+                     [1380, 968],
+                     [996, 840]]
 
-            for item in item_list:
-                taco = arcade.Sprite("taco-155812__340.png", TACO_SCALING)
-                taco.center_x = item[0]
-                taco.center_y = item[1]
+        # I found the taco image from OpenClipart-Vectors, pixabay.com
+        # Fixed Taco locations
+        for item in item_list:
+            taco = arcade.Sprite("taco-155812__340.png", TACO_SCALING)
+            taco.center_x = item[0]
+            taco.center_y = item[1]
 
-                self.taco_list.append(taco)
+            self.taco_list.append(taco)
 
         self.physics_engine = arcade.PhysicsEngineSimple(self.player_sprite, self.wall_list)
 
         # Set the background color
-        arcade.set_background_color(arcade.color.DARK_BLUE)
+        arcade.set_background_color(arcade.color.MIDNIGHT_BLUE)
+
+        self.set_mouse_visible(False)
 
     def on_draw(self):
         """
