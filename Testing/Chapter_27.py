@@ -21,8 +21,7 @@ def main():
     if current_list_position < len(name_list):
         print("Found at:", current_list_position)
     else:
-        print("Not Found.")
-
+        return None
 
     # If you want to print if you don't find it
     key = "Octavia the Siren"

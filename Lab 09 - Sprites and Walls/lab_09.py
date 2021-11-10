@@ -186,7 +186,7 @@ class MyGame(arcade.Window):
 
             while not taco_placed_successfully:
                 taco.center_x = random.randrange(228, 1764)
-                taco.center_y = random.randrange(136, 1160)
+                taco.center_y = random.randrange(136, 1096)
 
                 wall_hit_list = arcade.check_for_collision_with_list(taco, self.wall_list)
 
@@ -200,7 +200,7 @@ class MyGame(arcade.Window):
         self.physics_engine = arcade.PhysicsEngineSimple(self.player_sprite, self.wall_list)
 
         # Set the background color
-        arcade.set_background_color(arcade.color.SKY_BLUE)
+        arcade.set_background_color(arcade.color.DARK_BLUE)
 
     def on_draw(self):
         """
