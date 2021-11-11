@@ -15,7 +15,7 @@ def main():
     key = "Octavia the Siren"
 
     current_list_position = 0
-    while current_list_position < len(name_list) and name_list[current_list_position] != key: # position matters
+    while current_list_position < len(name_list) and name_list[current_list_position] != key:  # position matters
         current_list_position += 1
 
     if current_list_position < len(name_list):
@@ -34,13 +34,7 @@ def main():
         print("Not Found.")
 
 
-
-
-
-
 main()
-
-
 
 # How many elements would I have to check on average (100)
 # 100 / 2 = 50

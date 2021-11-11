@@ -21,7 +21,7 @@ def main():
     print(name_list)
     print("There were", len(name_list), "names in the file.")
 
-    # Linear Search
+    # Binary Search
     key = "Octavia the Siren"
 
     lower_bound = 0
