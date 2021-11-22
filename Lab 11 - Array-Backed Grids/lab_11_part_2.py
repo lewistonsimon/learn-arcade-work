@@ -82,7 +82,17 @@ class MyGame(arcade.Window):
             for row in range(ROW_COUNT):
                 if self.grid[row][column] == 1:
                     cell_count += 1
-            print("Column ", column, "has ", cell_count, "cells selected")
+            print("Column ", column, "has ", cell_count, "cells selected.")
+
+        for row in range(ROW_COUNT):
+            continuous_count = 0
+            for column in range(COLUMN_COUNT):
+                if self.grid[row][column] == 1:
+                    continuous_count += 1
+                if self.grid[row][column] == 0:
+                    if continuous_count > 2:
+                        print("There are", continuous_count, "continuous blocks selected on row", row, ".")
+
 
 
 def main():
