@@ -85,7 +85,6 @@ class MyGame(arcade.Window):
             print("Column ", column, "has ", cell_count, "cells selected")
 
 
-
 def main():
 
     window = MyGame(SCREEN_WIDTH, SCREEN_HEIGHT)
