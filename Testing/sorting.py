@@ -49,6 +49,7 @@ def selection_sort(my_list):
 selection_sort(my_list)
 print(my_list)
 
+# selection course
 # n = 10, outside loop run 100, inside runs average of 50, 100 * 50 = 5000
 # n * (n / 2) same as n^2 / 2
 
