@@ -28,6 +28,7 @@ class MyGame(arcade.Window):
                 self.grid[row].append(0)
 
         self.grid[2][1] = 1
+        print(self.grid[2][1])
         # row column format
         print(self.grid)
 

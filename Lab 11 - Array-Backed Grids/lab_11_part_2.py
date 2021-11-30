@@ -1,7 +1,7 @@
 import arcade
 
-WIDTH = 60
-HEIGHT = 60
+WIDTH = 20
+HEIGHT = 20
 MARGIN = 5
 COLUMN_COUNT = 10
 ROW_COUNT = 10
