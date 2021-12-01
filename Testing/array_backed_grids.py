@@ -27,7 +27,7 @@ class MyGame(arcade.Window):
             for column in range(COLUMN_COUNT):
                 self.grid[row].append(0)
 
-        self.grid[2][1] = 1
+        self.grid[2][1] = "Neo"
         print(self.grid[2][1])
         # row column format
         print(self.grid)
