@@ -20,8 +20,15 @@ class Item:
     """
     This is a class that represents the items.
     """
-    def __init__(self):
-        self.stapler = 9
+    def __init__(self, room_number):
+        self.stapler = room_number
+        self.compass = 0
+        self.knife = 0
+        self.food = 0
+        self.fork = 0
+        self.bucket = 0
+        self.twine = 0
+        self.corn = 0
 
 
 def main():
@@ -187,9 +194,9 @@ def main():
     room_list.append(room)
 
     # Items
-    # item_list = []
-    # item = Item("A stapler is here")
-    # item_list.append(item)
+    item_list = []
+    item = Item("A blue stapler is sitting on the desk")
+    item_list.append(item)
 
     current_room = 0
     done = False
