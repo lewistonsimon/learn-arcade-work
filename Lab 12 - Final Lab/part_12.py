@@ -40,7 +40,7 @@ def main():
                 "The wind ruffles the leaves in the trees and you see squirrels running.\n"
                 "There is an old red barn to the east. The door is slide open.\n"
                 "Paint is beginning to chip off of it causing it to look rundown.\n"
-                "To the west there is a white ranch style house."
+                "To the west there is a white ranch style house.\n"
                 "North of you is a corn field.",
                 13, 10, None, 1, None, None, None, None, None, None)
     room_list.append(room)

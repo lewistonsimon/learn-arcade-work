@@ -1,0 +1,43 @@
+Simon Lewiston
+12/1/21
+Quantitiative Reasoning Reflection
+
+Question 1
+
+    You use an if statement
+
+Question 2
+
+    comments, specific descriptive variables, grouping like code together, check ins,
+    keep track of your changes, documention - write how an algorithms works.
+
+    To communicate a code with another programmer it is important to make it easy
+to read. By placing comments in the code, other programmers can read them and
+get an idea of how that section of code works. It is also important to use
+descriptive variable names that will let someone know exactly what that
+variable represents. It is better to have a variable called temperature rather
+than t because t could be anything. Grouping like code together also makes the
+code easier to follow. If someone is looking for a part of the code it is
+better if they can find all the code they want in one area rather than searching
+through the entire program.
+    It is also important to communicate the changes that have been made to your
+program. When pushing to the server it could be benifical if you describe what
+has been worked on in that session of work. Maybe the simplist way to communicate
+your program to other programmers is to write down how the algorithms work. This
+could be done in a comment section or on a website that could be linked to your
+work.
+
+
+Question 3
+
+    run the code to see if there is an error, inspect the error to figure out where it is,
+    run code to see if you get the desired outcome,
+
+    Testing your code is important to make sure that it works the way it is
+meant to run. One way to handle this check is by running your code after you work
+on it. You need to make sure that you are recieving the desired outcome.
+
+Question 4
+
+    mess things up on algorithms, not dievers set up of opinions, evaluated on stats,
+    only defined by stats,
