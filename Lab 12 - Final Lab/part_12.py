@@ -20,15 +20,10 @@ class Item:
     """
     This is a class that represents the items.
     """
-    def __init__(self, room_number):
-        self.stapler = room_number
-        self.compass = 0
-        self.knife = 0
-        self.food = 0
-        self.fork = 0
-        self.bucket = 0
-        self.twine = 0
-        self.corn = 0
+    def __init__(self, description, name, room_number):
+        self.description = description
+        self.name = name
+        self.room_number = room_number
 
 
 def main():
@@ -195,7 +190,26 @@ def main():
 
     # Items
     item_list = []
-    item = Item("A blue stapler is sitting on the desk")
+
+    item = Item("A blue stapler is here.", "stapler", 9)
+    item_list.append(item)
+
+    item = Item("There is a compass here.", "compass", 3)
+    item_list.append(item)
+
+    item = Item("There is knife here.", "knife", 7)
+    item_list.append(item)
+
+    item = Item("Food.", "food", 4)
+    item_list.append(item)
+
+    item = Item("A bent fork is on the floor.", "fork", 4)
+    item_list.append(item)
+
+    item = Item("An empty bucket is sitting on the floor.", "bucket", 10)
+    item_list.append(item)
+
+    item = Item("Hay twine is here.", "twine", 11)
     item_list.append(item)
 
     current_room = 0
@@ -204,6 +218,9 @@ def main():
     while not done:
         print()
         print(room_list[current_room].description)
+        for item in item_list:
+            if item.room_number == current_room:
+                print(item.description)
         user_input = input("What do you want to do? ")
 
         # When the user wants to go north.

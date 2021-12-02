@@ -6,6 +6,8 @@ Question 1
 
     You use an if statement
 
+
+
 Question 2
 
     comments, specific descriptive variables, grouping like code together, check ins,
@@ -21,8 +23,8 @@ code easier to follow. If someone is looking for a part of the code it is
 better if they can find all the code they want in one area rather than searching
 through the entire program.
     It is also important to communicate the changes that have been made to your
-program. When pushing to the server it could be benifical if you describe what
-has been worked on in that session of work. Maybe the simplist way to communicate
+program. When pushing to the server it could be beneficial if you describe what
+has been worked on in that session of work. Maybe the simplest way to communicate
 your program to other programmers is to write down how the algorithms work. This
 could be done in a comment section or on a website that could be linked to your
 work.
@@ -34,10 +36,25 @@ Question 3
     run code to see if you get the desired outcome,
 
     Testing your code is important to make sure that it works the way it is
-meant to run. One way to handle this check is by running your code after you work
-on it. You need to make sure that you are recieving the desired outcome.
+meant to run. The easiest way to test to see if your code works is by running it
+to see if an error occurs. If an error occurs, you can search through the stack
+trace and find the location of the error, and then you can search in that spot and
+fix the problem.
+    There are times when the code runs without errors, but it is not the desired
+outcome. In this case you can run code to see if you get the outcome that you
+wanted. By placing print statements after things like for loops and on key pressed
+functions, we can tell if they are running and where the code stops being triggered.
+
+
 
 Question 4
 
     mess things up on algorithms, not dievers set up of opinions, evaluated on stats,
     only defined by stats,
+
+    Numerical methods are a great tool to be used, but they have limitations. They
+first have to be set up, and it is possible that a mistake can be made by the
+programmer. The numerical method can only do what it is programmed to, so a mistake
+in the setup would have repercussions later on.
+    Numerical methods can also only evaluate the stats. It can not bring in any
+logic or reasoning behind why a stat is the way it is.
