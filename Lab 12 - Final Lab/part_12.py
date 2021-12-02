@@ -155,42 +155,42 @@ def main():
 
     room = Room("18 You have entered deeper into the corn field.\n"
                 "You can go deeper into the field by going north, northeast, or northwest.",
-                None, None, None, None, None, None, None, None, 17, None)  # 18
+                None, 25, 24, None, None, None, None, None, 17, None)  # 18
     room_list.append(room)
 
     room = Room("19 You have entered deeper into the corn field.\n"
                 "You can go deeper into the field by going north, northeast, or northwest.",
-                None, None, 15, 25, None, None, None, None, None, None)  # 19
+                None, None, 15, 25, None, None, None, None, 20, None)  # 19
     room_list.append(room)
 
     room = Room("20 You have entered deeper into the corn field.\n"
                 "You can go deeper into the field by going north, northeast, or northwest.",
-                None, None, 16, None, None, None, None, None, None, None)  # 20
+                None, 21, 16, None, None, None, None, 20, None, None)  # 20
     room_list.append(room)
 
     room = Room("21 You have entered deeper into the corn field.\n"
                 "You can go deeper into the field by going north, northeast, or northwest.",
-                None, None, None, None, None, None, None, None, None, 16)  # 21
+                None, None, 22, 20, None, None, None, None, None, 16)  # 21
     room_list.append(room)
 
     room = Room("22 You have entered deeper into the corn field.\n"
                 "You can go deeper into the field by going north, northeast, or northwest.",
-                None, None, None, None, None, None, None, 16, None, None)  # 22
+                21, None, None, None, None, None, None, 16, None, 23)  # 22
     room_list.append(room)
 
     room = Room("23 You have entered deeper into the corn field.\n"
                 "You can go deeper into the field by going north, northeast, or northwest.",
-                16, None, None, None, None, None, None, None, None, None)  # 23
+                16, None, None, None, None, None, 22, None, None, None)  # 23
     room_list.append(room)
 
     room = Room("24 You have entered deeper into the corn field.\n"
                 "You can go deeper into the field by going north, northeast, or northwest.",
-                None, None, None, None, None, None, 14, None, None, None)  # 24
+                18, None, None, None, None, None, 14, None, None, None)  # 24
     room_list.append(room)
 
     room = Room("25 You have entered deeper into the corn field.\n"
                 "You can go deeper into the field by going north, northeast, or northwest.",
-                None, 19, 17, None, None, None, None, None, 15, None)  # 25
+                None, 19, 17, 18, None, None, None, None, 15, None)  # 25
     room_list.append(room)
 
     # Items
