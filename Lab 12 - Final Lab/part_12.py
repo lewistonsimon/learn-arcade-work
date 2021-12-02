@@ -27,7 +27,7 @@ class Item:
 
 
 def main():
-    # Introductin
+    # Introduction
     print("Welcome")
 
     # Rooms
@@ -71,9 +71,9 @@ def main():
     room_list.append(room)
 
     # Room 4
-    room = Room("You are standing in the kitchen. Pots and pans line the counter of last night's dinner.\n"
+    room = Room("You are standing in the kitchen. Pots and pans line the counter from a previous dinner.\n"
                 "The fruit bowl is sitting on the table. Flies have begun to gather around the rotting fruit.\n"
-                "Spoons have been spilled and now cover the floor.\n"
+                "Silverware has been spilled and now cover the floor.\n"
                 "You can enter back into the hallway by heading west.",
                 None, None, None, 5, None, None, None, None, None, None)
     room_list.append(room)
@@ -140,7 +140,7 @@ def main():
     room_list.append(room)
 
     # Room 13
-    room = Room("You have entered the corn field. You can see the blue sky above you.\n"
+    room = Room("You are standing right inside the corn field. You can see the blue sky above you.\n"
                 "The yard is to your south. You can go deeper into the field by going north, northeast, or northwest.\n"
                 "You can also walk the front fence line to the east or west.",
                 15, 23, 0, 24, None, None, 16, 14, None, None)
@@ -185,7 +185,7 @@ def main():
     # Room 20
     room = Room("The corn is getting thick and everything looks the same.\n"
                 "You can continue by going east, south, northwest, or southwest.",
-                None, 21, 16, None, None, None, None, 20, None, 15)
+                None, 21, 16, None, None, None, None, 19, None, 15)
     room_list.append(room)
 
     # Room 21
@@ -232,7 +232,7 @@ def main():
     item = Item("There is knife here.", "knife", 7)
     item_list.append(item)
 
-    item = Item("Food.", "food", 4)
+    item = Item("Old food is here.", "food", 4)
     item_list.append(item)
 
     item = Item("A bent fork is on the floor.", "fork", 4)
@@ -245,6 +245,7 @@ def main():
     item_list.append(item)
 
     item = Item("An old key is here.", "key", 6)
+    item_list.append(item)
 
     current_room = 0
     done = False
