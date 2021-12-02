@@ -28,7 +28,9 @@ class Item:
 
 def main():
     # Introduction
-    print("Welcome")
+    print("Welcome to the Colson Family Farm.")
+    print("The locals have not heard much from them recently.")
+    print("You have been sent to their property to find out information.")
 
     # Rooms
     room_list = []
@@ -128,8 +130,7 @@ def main():
 
     # Room 11
     room = Room("You are in the old hay loft. The floor is filled with cracked boards.\n"
-                "There is some loose twine hanging from the rafters above you.\n"
-                "",
+                "There is some loose twine hanging from the rafters above you.\n",
                 None, None, None, None, None, 10, None, None, None, None)
     room_list.append(room)
 
@@ -220,6 +221,8 @@ def main():
                 None, 19, 17, 18, None, None, None, None, 15, None)
     room_list.append(room)
 
+    # Room 26
+
     # Items
     item_list = []
 
@@ -256,10 +259,11 @@ def main():
         for item in item_list:
             if item.room_number == current_room:
                 print(item.description)
-        user_input = input("What do you want to do? ")
+        user_command = input("What do you want to do? ")
+        command_words = user_command.split(" ")
 
         # When the user wants to go north.
-        if user_input.lower() == "n" or user_input.lower() == "north":
+        if command_words[0].lower() == "n" or command_words[0].lower() == "north":
             next_room = room_list[current_room].north
             if next_room is None:
                 print("You can't go that way.")
@@ -267,7 +271,7 @@ def main():
                 current_room = next_room
 
         # When the user wants to go east.
-        elif user_input.lower() == "e" or user_input.lower() == "east":
+        elif command_words[0].lower() == "e" or command_words[0].lower() == "east":
             next_room = room_list[current_room].east
             if next_room is None:
                 print("You can't go that way.")
@@ -275,7 +279,7 @@ def main():
                 current_room = next_room
 
         # When the user wants to go south.
-        elif user_input.lower() == "s" or user_input.lower() == "south":
+        elif command_words[0].lower() == "s" or command_words[0].lower() == "south":
             next_room = room_list[current_room].south
             if next_room is None:
                 print("You can't go that way.")
@@ -283,7 +287,7 @@ def main():
                 current_room = next_room
 
         # When the user wants to head west.
-        elif user_input.lower() == "w" or user_input.lower() == "west":
+        elif command_words[0].lower() == "w" or command_words[0].lower() == "west":
             next_room = room_list[current_room].west
             if next_room is None:
                 print("You can't go that way.")
@@ -291,7 +295,7 @@ def main():
                 current_room = next_room
 
         # When the user wants to go up
-        elif user_input.lower() == "u" or user_input.lower() == "up":
+        elif command_words[0].lower() == "u" or command_words[0].lower() == "up":
             next_room = room_list[current_room].up
             if next_room is None:
                 print("You can't go that way.")
@@ -299,7 +303,7 @@ def main():
                 current_room = next_room
 
         # When the user wants to go down.
-        elif user_input.lower() == "d" or user_input.lower() == "down":
+        elif command_words[0].lower() == "d" or command_words[0].lower() == "down":
             next_room = room_list[current_room].down
             if next_room is None:
                 print("You can't go that way.")
@@ -307,7 +311,7 @@ def main():
                 current_room = next_room
 
         # When the user wants to head northeast.
-        elif user_input.lower() == "ne" or user_input.lower() == "northeast":
+        elif command_words[0].lower() == "ne" or command_words[0].lower() == "northeast":
             next_room = room_list[current_room].northeast
             if next_room is None:
                 print("You can't go that way.")
@@ -315,7 +319,7 @@ def main():
                 current_room = next_room
 
         # When the user wants to head northwest.
-        elif user_input.lower() == "nw" or user_input.lower() == "northwest":
+        elif command_words[0].lower() == "nw" or command_words[0].lower() == "northwest":
             next_room = room_list[current_room].northwest
             if next_room is None:
                 print("You can't go that way.")
@@ -323,7 +327,7 @@ def main():
                 current_room = next_room
 
         # When the user wants to head southeast.
-        elif user_input.lower() == "se" or user_input.lower() == "southeast":
+        elif command_words[0].lower() == "se" or command_words[0].lower() == "southeast":
             next_room = room_list[current_room].southeast
             if next_room is None:
                 print("You can't go that way.")
@@ -331,15 +335,27 @@ def main():
                 current_room = next_room
 
         # When the user wants to head southwest.
-        elif user_input.lower() == "sw" or user_input.lower() == "southwest":
+        elif command_words[0].lower() == "sw" or command_words[0].lower() == "southwest":
             next_room = room_list[current_room].southwest
             if next_room is None:
                 print("You can't go that way.")
             else:
                 current_room = next_room
 
+        # Get command
+        elif command_words[0].lower() == "get":
+            item_exist = False
+            for item in item_list:
+                if item.name == command_words[1]:
+                    item_exist = True
+                    if item.room_number == current_room:
+                        item.room_number = -1
+                        print("You picked up an item.")
+            if not item_exist:
+                print("That item is not here. ")
+
         # When the user wants to quit the game.
-        elif user_input.lower() == "q" or user_input.lower() == "quit":
+        elif command_words[0].lower() == "q" or command_words[0].lower() == "quit":
             done = True
             print("See you some other time.")
 
