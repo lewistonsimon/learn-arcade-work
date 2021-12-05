@@ -343,7 +343,7 @@ def main():
                 current_room = next_room
 
         # Get command
-        elif command_words[0].lower() == "get":
+        elif command_words[0].lower() == "get" or command_words[0].lower() == "grab":
             item_exist = False
             for item in item_list:
                 if item.name == command_words[1]:
@@ -353,6 +353,23 @@ def main():
                         print("You picked up an item.")
             if not item_exist:
                 print("That item is not here. ")
+
+        # Look at the player's inventory.
+        elif command_words[0].lower() == "inventory":
+            print(room_list[-1])
+
+        # Drop an item from a player's inventory.
+        elif command_words[0].lower() == "drop":
+            item_exist = False
+            for item in item_list:
+                if item.name == command_words[1]:
+                    print("hey")
+                    item_exist = True
+                    if item.room_number == -1:
+                        item.room_number = current_room
+                        print("You dropped an item.")
+            if not item_exist:
+                print("You do not have possession of that item. ")
 
         # When the user wants to quit the game.
         elif command_words[0].lower() == "q" or command_words[0].lower() == "quit":
