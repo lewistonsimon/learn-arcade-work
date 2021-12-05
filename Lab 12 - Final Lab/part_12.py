@@ -114,9 +114,9 @@ def main():
 
     # Room 9
     room = Room("You are in the office. There is desk that is neatly organized.\n"
-                "There is a stapler and a copier on the desk.\n"
+                "There is a lamp on the desk.\n"
                 "Book shelves full of large text books line the walls.\n"
-                "There are two exists on the south and east wall.",
+                "There are two exists on the south wall and east wall.",
                 None, 2, 8, None, None, None, None, None, None, None)
     room_list.append(room)
 
@@ -367,7 +367,6 @@ def main():
             item_exist = False
             for item in item_list:
                 if item.name == command_words[1]:
-                    print("hey")
                     item_exist = True
                     if item.room_number == -1:
                         item.room_number = current_room
@@ -392,6 +391,8 @@ def main():
         elif command_words[0].lower() == "use":
             item_exist = False
             for item in item_list:
+                # if command_words[1].lower() is None:
+                #     print("Nothing is selected to be used.")
                 if item.name == command_words[1]:
                     item_exist = True
                     if item.room_number == -1:
@@ -401,12 +402,21 @@ def main():
                                 print(f"The {item.name} is now empty.")
                             else:
                                 print("The bucket is empty.")
-                                print("You need to fill it before you can use it")
+                                print("You need to fill it before you can use it.")
                         if command_words[1] == "stapler":
-                            stapler_count -= 1
-                            print(f"You used the stapler. There are {stapler_count} staples left.")
+                            if stapler_count > 0:
+                                stapler_count -= 1
+                                print(f"You used the stapler. There are {stapler_count} staples left.")
+                            else:
+                                print("There are no staples left.")
                         if command_words[1] == "fork":
                             print(f"You used the {item.name}.")
+                        if command_words[1] == "compass":
+                            print("hey")
+                    else:
+                        print("You do not have possession of that item. ")
+            if not item_exist:
+                print("You do not have possession of that item. ")
 
         # When the user wants to quit the game.
         elif command_words[0].lower() == "q" or command_words[0].lower() == "quit":
