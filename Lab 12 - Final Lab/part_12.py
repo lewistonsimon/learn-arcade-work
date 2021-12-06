@@ -76,6 +76,7 @@ def main():
     room = Room("You are standing in the kitchen. Pots and pans line the counter from a previous dinner.\n"
                 "The fruit bowl is sitting on the table. Flies have begun to gather around the rotting fruit.\n"
                 "Silverware has been spilled and now cover the floor.\n"
+                "A sink is on the far wall of the kitchen.\n"
                 "You can enter back into the hallway by heading west.",
                 None, None, None, 5, None, None, None, None, None, None)
     room_list.append(room)
@@ -113,9 +114,9 @@ def main():
 
     # Room 9
     room = Room("You are in the office. There is desk that is neatly organized.\n"
-                "There is a stapler and a copier on the desk.\n"
+                "There is a lamp on the desk.\n"
                 "Book shelves full of large text books line the walls.\n"
-                "There are two exists on the south and east wall.",
+                "There are two exists on the south wall and east wall.",
                 None, 2, 8, None, None, None, None, None, None, None)
     room_list.append(room)
 
@@ -252,6 +253,9 @@ def main():
 
     current_room = 0
     done = False
+    food_exist = True
+    bucket_full = False
+    stapler_count = 5
 
     while not done:
         print()
@@ -343,16 +347,78 @@ def main():
                 current_room = next_room
 
         # Get command
-        elif command_words[0].lower() == "get":
+        elif command_words[0].lower() == "get" or command_words[0].lower() == "grab":
             item_exist = False
             for item in item_list:
                 if item.name == command_words[1]:
                     item_exist = True
                     if item.room_number == current_room:
                         item.room_number = -1
-                        print("You picked up an item.")
+                        print(f"You picked up the {item.name}.")
+                    else:
+                        print("That item is not here.")
             if not item_exist:
                 print("That item is not here. ")
+
+        # Look at the player's inventory.
+        elif command_words[0].lower() == "inventory":
+            print(room_list[-1])
+
+        # Drop an item from a player's inventory.
+        elif command_words[0].lower() == "drop":
+            item_exist = False
+            for item in item_list:
+                if item.name == command_words[1]:
+                    item_exist = True
+                    if item.room_number == -1:
+                        item.room_number = current_room
+                        print(f"You dropped the {item.name}.")
+            if not item_exist:
+                print("You do not have possession of that item. ")
+
+        # If the user wants to fill the bucket.
+        elif command_words[0].lower() == "fill" or command_words[0].lower() == "sink":
+            if current_room == 4:
+                for item in item_list:
+                    if item.name == command_words[1]:
+                        if command_words[1] == "bucket":
+                            bucket_full = True
+                            print(f"The {item.name} is now full of water.")
+                        else:
+                            print("You can not fill that item with water.")
+            else:
+                print("There is nowhere to fill anything.")
+
+        # When the user wants to use an item.
+        elif command_words[0].lower() == "use":
+            item_exist = False
+            for item in item_list:
+                # if command_words[1].lower() is None:
+                #     print("Nothing is selected to be used.")
+                if item.name == command_words[1]:
+                    item_exist = True
+                    if item.room_number == -1:
+                        if command_words[1] == "bucket":
+                            if bucket_full is True:
+                                print(f"You used the {item.name}.")
+                                print(f"The {item.name} is now empty.")
+                            else:
+                                print("The bucket is empty.")
+                                print("You need to fill it before you can use it.")
+                        if command_words[1] == "stapler":
+                            if stapler_count > 0:
+                                stapler_count -= 1
+                                print(f"You used the stapler. There are {stapler_count} staples left.")
+                            else:
+                                print("There are no staples left.")
+                        if command_words[1] == "fork":
+                            print(f"You used the {item.name}.")
+                        if command_words[1] == "compass":
+                            print("hey")
+                    else:
+                        print("You do not have possession of that item. ")
+            if not item_exist:
+                print("You do not have possession of that item. ")
 
         # When the user wants to quit the game.
         elif command_words[0].lower() == "q" or command_words[0].lower() == "quit":

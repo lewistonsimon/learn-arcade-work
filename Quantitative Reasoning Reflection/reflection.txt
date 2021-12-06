@@ -1,17 +1,27 @@
 Simon Lewiston
 12/1/21
-Quantitiative Reasoning Reflection
+Quantitative Reasoning Reflection
 
 Question 1
 
-    You use an if statement
-
-
+    A code requires a lot of different parts to make it run correctly. An if
+statement is needed when choosing between two situations so that the correct code
+will be run. An if statement can also be used to see if a condition is met, such
+as if thirst < 2, print "you are thirsty." We can use lists to store data or
+multiple characters for later on. Loops are beneficial when we need to
+do something multiple times or until a condition is met. Looping will give you the
+ability to search through a list and find the element that is needed.
+    Functions are used when code is going to be reused multiple times. It eliminates
+the need for you to rewrite multiple lines of code to get an outcome, and it
+allows us to move something like a drawing around by just putting in coordinates.
+Classes can help simplify code by eliminating the need to push a bunch of
+parameters into a function, and makes it easier to add attributes without
+having to go through and changing the parameters.
 
 Question 2
 
     comments, specific descriptive variables, grouping like code together, check ins,
-    keep track of your changes, documention - write how an algorithms works.
+    keep track of your changes, documentation - write how an algorithms works.
 
     To communicate a code with another programmer it is important to make it easy
 to read. By placing comments in the code, other programmers can read them and
@@ -29,7 +39,6 @@ your program to other programmers is to write down how the algorithms work. This
 could be done in a comment section or on a website that could be linked to your
 work.
 
-
 Question 3
 
     run the code to see if there is an error, inspect the error to figure out where it is,
@@ -39,22 +48,30 @@ Question 3
 meant to run. The easiest way to test to see if your code works is by running it
 to see if an error occurs. If an error occurs, you can search through the stack
 trace and find the location of the error, and then you can search in that spot and
-fix the problem.
+fix the problem. It is always reasonable to ask a question if you can not find out
+where the error is. It is important to ask detailed questions and to be very
+specific in explaining what is wrong.
     There are times when the code runs without errors, but it is not the desired
 outcome. In this case you can run code to see if you get the outcome that you
 wanted. By placing print statements after things like for loops and on key pressed
 functions, we can tell if they are running and where the code stops being triggered.
-
-
+By narrowing it down you can focus on the part that does not work.
 
 Question 4
 
-    mess things up on algorithms, not dievers set up of opinions, evaluated on stats,
+    mess things up on algorithms, not diverse set up of opinions, evaluated on stats,
     only defined by stats,
 
     Numerical methods are a great tool to be used, but they have limitations. They
 first have to be set up, and it is possible that a mistake can be made by the
 programmer. The numerical method can only do what it is programmed to, so a mistake
-in the setup would have repercussions later on.
+in the setup would have repercussions later on. Algorithms also do not have any
+creative thinking. The program could work but if there is a better way to do
+something it could never adjust.
     Numerical methods can also only evaluate the stats. It can not bring in any
-logic or reasoning behind why a stat is the way it is.
+logic or reasoning behind why a stat is the way it is. Stats might not tell the
+entire story. If there is a problem causing lower stats, it will not be taken into
+account. Algorithms also do not have empathy and do not have the ability to
+relate to the people they are dealing with.
+
+Add one more.
