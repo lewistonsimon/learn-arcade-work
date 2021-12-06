@@ -233,19 +233,22 @@ def main():
     item = Item("There is a compass here.", "compass", 3)
     item_list.append(item)
 
-    item = Item("There is knife here.", "knife", 7)
+    item = Item("There is a knife here.", "knife", 7)
     item_list.append(item)
 
-    item = Item("Old food is here.", "food", 4)
+    item = Item("Food is here.", "food", 4)
     item_list.append(item)
 
-    item = Item("A bent fork is on the floor.", "fork", 4)
+    item = Item("A bent fork is on the ground.", "fork", 4)
     item_list.append(item)
 
-    item = Item("An empty bucket is sitting on the floor.", "bucket", 10)
+    item = Item("A bucket is sitting on the ground.", "bucket", 10)
     item_list.append(item)
 
     item = Item("Hay twine is here.", "twine", 11)
+    item_list.append(item)
+
+    item = Item("Corn is here.", "corn", 13)
     item_list.append(item)
 
     item = Item("An old key is here.", "key", 6)
@@ -348,6 +351,9 @@ def main():
 
         # Get command
         elif command_words[0].lower() == "get" or command_words[0].lower() == "grab":
+            if len(command_words) == 1:
+                print("What do you want to get?")
+                continue
             item_exist = False
             for item in item_list:
                 if item.name == command_words[1]:
@@ -356,16 +362,22 @@ def main():
                         item.room_number = -1
                         print(f"You picked up the {item.name}.")
                     else:
-                        print("That item is not here.")
+                        print(f"The {item.name} is not here.")
             if not item_exist:
-                print("That item is not here. ")
+                print(f"The {item.name} is not here.")
 
         # Look at the player's inventory.
         elif command_words[0].lower() == "inventory":
-            print(room_list[-1])
+            item_exist = False
+            for item in item_list:
+                if item.room_number == -1:
+                    print(f"You have the {item.name} in your inventory.")
 
         # Drop an item from a player's inventory.
         elif command_words[0].lower() == "drop":
+            if len(command_words) == 1:
+                print("What do you want to drop?")
+                continue
             item_exist = False
             for item in item_list:
                 if item.name == command_words[1]:
@@ -373,11 +385,16 @@ def main():
                     if item.room_number == -1:
                         item.room_number = current_room
                         print(f"You dropped the {item.name}.")
+                    else:
+                        print(f"You do not have possession of the {item.name}.")
             if not item_exist:
-                print("You do not have possession of that item. ")
+                print(f"You do not have possession of the {item.name}.")
 
         # If the user wants to fill the bucket.
         elif command_words[0].lower() == "fill" or command_words[0].lower() == "sink":
+            if len(command_words) == 1:
+                print("What do you want to fill?")
+                continue
             if current_room == 4:
                 for item in item_list:
                     if item.name == command_words[1]:
@@ -385,12 +402,15 @@ def main():
                             bucket_full = True
                             print(f"The {item.name} is now full of water.")
                         else:
-                            print("You can not fill that item with water.")
+                            print(f"You can not fill the {item.name} with water.")
             else:
                 print("There is nowhere to fill anything.")
 
         # When the user wants to use an item.
         elif command_words[0].lower() == "use":
+            if len(command_words) == 1:
+                print("What do you want to use?")
+                continue
             item_exist = False
             for item in item_list:
                 # if command_words[1].lower() is None:
@@ -414,11 +434,21 @@ def main():
                         if command_words[1] == "fork":
                             print(f"You used the {item.name}.")
                         if command_words[1] == "compass":
-                            print("hey")
+                            print(f"You used the {item.name}.")
+                        if command_words[1] == "knife":
+                            print(f"You used the {item.name}.")
+                        if command_words[1] == "food":
+                            print(f"You used the {item.name}.")
+                        if command_words[1] == "twine":
+                            print(f"You used the {item.name}.")
+                        if command_words[1] == "Corn":
+                            print(f"You used the {item.name}.")
+                        if command_words[1] == "key":
+                            print(f"You used the {item.name}.")
                     else:
-                        print("You do not have possession of that item. ")
+                        print(f"You do not have possession of the {item.name}. ")
             if not item_exist:
-                print("You do not have possession of that item. ")
+                print(f"You do not have possession of the {item.name}. ")
 
         # When the user wants to quit the game.
         elif command_words[0].lower() == "q" or command_words[0].lower() == "quit":
