@@ -355,6 +355,8 @@ def main():
                     if item.room_number == current_room:
                         item.room_number = -1
                         print(f"You picked up the {item.name}.")
+                    else:
+                        print("That item is not here.")
             if not item_exist:
                 print("That item is not here. ")
 
