@@ -57,9 +57,6 @@ wanted. By placing print statements after things like for loops and on key press
 functions, we can tell if they are running and where the code stops being triggered.
 By narrowing it down you can focus on the part that does not work.
 
-
-
-
 Question 4
 
     mess things up on algorithms, not diverse set up of opinions, evaluated on stats,
@@ -68,6 +65,13 @@ Question 4
     Numerical methods are a great tool to be used, but they have limitations. They
 first have to be set up, and it is possible that a mistake can be made by the
 programmer. The numerical method can only do what it is programmed to, so a mistake
-in the setup would have repercussions later on.
+in the setup would have repercussions later on. Algorithms also do not have any
+creative thinking. The program could work but if there is a better way to do
+something it could never adjust.
     Numerical methods can also only evaluate the stats. It can not bring in any
-logic or reasoning behind why a stat is the way it is.
+logic or reasoning behind why a stat is the way it is. Stats might not tell the
+entire story. If there is a problem causing lower stats, it will not be taken into
+account. Algorithms also do not have empathy and do not have the ability to
+relate to the people they are dealing with.
+
+Add one more.
