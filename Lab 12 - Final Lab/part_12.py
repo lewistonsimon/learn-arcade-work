@@ -26,6 +26,17 @@ class Item:
         self.room_number = room_number
 
 
+class Enemy:
+    """
+    This is a class that represents the enemies.
+    """
+    def __init__(self, description, name, room_number, health):
+        self.description = description
+        self.name = name
+        self.room_number = room_number
+        self.health = health
+
+
 def main():
     # Introduction
     print("Welcome to the Colson Family Farm.")
@@ -131,7 +142,7 @@ def main():
 
     # Room 11
     room = Room("You are in the old hay loft. The floor is filled with cracked boards.\n"
-                "There is some loose twine hanging from the rafters above you.\n",
+                "There is some loose twine hanging from the rafters above you.",
                 None, None, None, None, None, 10, None, None, None, None)
     room_list.append(room)
 
@@ -253,6 +264,12 @@ def main():
 
     item = Item("An old key is here.", "key", 6)
     item_list.append(item)
+
+    # Enemies
+    enemy_list = []
+
+    enemy = Enemy("A scarecrow is staring at you.", "scarecrow", 16, 5)
+    enemy_list.append(enemy)
 
     current_room = 0
     done = False
