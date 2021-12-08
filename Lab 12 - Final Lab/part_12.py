@@ -1,3 +1,6 @@
+import random
+
+
 class Room:
     """
     This is a class that represents the rooms.
@@ -268,7 +271,14 @@ def main():
     # Enemies
     enemy_list = []
 
-    enemy = Enemy("A scarecrow is staring at you.", "scarecrow", 16, 5)
+    enemy = Enemy("A scarecrow is staring at you.\n"
+                  "It seems to be following you with its eyes.\n"
+                  "It says, \"You have entered my corn field. You need an offering to continue.\""
+                  "If you do not have an offering you will die.",
+                  "scarecrow", 16, 5)
+    enemy_list.append(enemy)
+
+    enemy = Enemy("Three coyotes are running towards you!", "coyote", 0, 15)
     enemy_list.append(enemy)
 
     current_room = 0
@@ -283,6 +293,9 @@ def main():
         for item in item_list:
             if item.room_number == current_room:
                 print(item.description)
+        for enemy in enemy_list:
+            if enemy.room_number == current_room:
+                print(enemy.description)
         user_command = input("What do you want to do? ")
         command_words = user_command.split(" ")
 
@@ -463,9 +476,9 @@ def main():
                         if command_words[1] == "key":
                             print(f"You used the {item.name}.")
                     else:
-                        print(f"You do not have possession of the {item.name}. ")
+                        print(f"You do not have possession of the {command_words[1]}. ")
             if not item_exist:
-                print(f"You do not have possession of the {item.name}. ")
+                print(f"You do not have possession of the {command_words[1]}. ")
 
         # When the user wants to quit the game.
         elif command_words[0].lower() == "q" or command_words[0].lower() == "quit":
