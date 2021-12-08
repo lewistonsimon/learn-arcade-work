@@ -381,7 +381,7 @@ def main():
                     else:
                         print(f"The {item.name} is not here.")
             if not item_exist:
-                print(f"The {item.name} is not here.")
+                print(f"The {command_words[1]} is not here.")
 
         # Look at the player's inventory.
         elif command_words[0].lower() == "inventory":
@@ -403,9 +403,9 @@ def main():
                         item.room_number = current_room
                         print(f"You dropped the {item.name}.")
                     else:
-                        print(f"You do not have possession of the {item.name}.")
+                        print(f"You do not have possession of the {command_words[1]}.")
             if not item_exist:
-                print(f"You do not have possession of the {item.name}.")
+                print(f"You do not have possession of the {command_words[1]}.")
 
         # If the user wants to fill the bucket.
         elif command_words[0].lower() == "fill" or command_words[0].lower() == "sink":
