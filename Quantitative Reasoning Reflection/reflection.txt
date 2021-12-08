@@ -11,17 +11,14 @@ as if thirst < 2, print "you are thirsty." We can use lists to store data or
 multiple characters for later on. Loops are beneficial when we need to
 do something multiple times or until a condition is met. Looping will give you the
 ability to search through a list and find the element that is needed.
-    Functions are used when code is going to be reused multiple times. It eliminates
-the need for you to rewrite multiple lines of code to get an outcome, and it
-allows us to move something like a drawing around by just putting in coordinates.
-Classes can help simplify code by eliminating the need to push a bunch of
-parameters into a function, and makes it easier to add attributes without
-having to go through and changing the parameters.
+    Functions are used when code is going to be reused multiple times. It
+eliminates the need for you to rewrite multiple lines of code to get an outcome,
+and it allows us to move something like a drawing around by just putting in
+coordinates. Classes can help simplify code by eliminating the need to push a
+bunch of parameters into a function, and makes it easier to add attributes
+without having to go through and changing the parameters.
 
 Question 2
-
-    comments, specific descriptive variables, grouping like code together, check ins,
-    keep track of your changes, documentation - write how an algorithms works.
 
     To communicate a code with another programmer it is important to make it easy
 to read. By placing comments in the code, other programmers can read them and
@@ -41,9 +38,6 @@ work.
 
 Question 3
 
-    run the code to see if there is an error, inspect the error to figure out where it is,
-    run code to see if you get the desired outcome,
-
     Testing your code is important to make sure that it works the way it is
 meant to run. The easiest way to test to see if your code works is by running it
 to see if an error occurs. If an error occurs, you can search through the stack
@@ -59,9 +53,6 @@ By narrowing it down you can focus on the part that does not work.
 
 Question 4
 
-    mess things up on algorithms, not diverse set up of opinions, evaluated on stats,
-    only defined by stats,
-
     Numerical methods are a great tool to be used, but they have limitations. They
 first have to be set up, and it is possible that a mistake can be made by the
 programmer. The numerical method can only do what it is programmed to, so a mistake
@@ -71,7 +62,8 @@ something it could never adjust.
     Numerical methods can also only evaluate the stats. It can not bring in any
 logic or reasoning behind why a stat is the way it is. Stats might not tell the
 entire story. If there is a problem causing lower stats, it will not be taken into
-account. Algorithms also do not have empathy and do not have the ability to
-relate to the people they are dealing with.
+account. Algorithms do not have empathy and do not have the ability to
+relate to the people they are dealing with. Algorithms also can not build human
+connections. Some tasks require human connections to get a job done, and algorithms
+fail to do this, so they can not replace humans in the world.
 
-Add one more.
