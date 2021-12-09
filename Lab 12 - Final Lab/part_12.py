@@ -1,8 +1,8 @@
 import random
 
-from enemy import Enemy
 from create_rooms import create_rooms
 from create_items import create_items
+from create_enemy import create_enemy
 
 
 def main():
@@ -13,23 +13,7 @@ def main():
 
     room_list = create_rooms()
     item_list = create_items()
-
-    # Enemies
-    enemy_list = []
-
-    enemy = Enemy("A scarecrow is staring at you.\n"
-                  "It seems to be following you with its eyes.\n"
-                  "It says, \"You have entered my corn field. You need an offering to continue.\""
-                  "If you do not have an offering you will die.",
-                  "scarecrow", 16, 5)
-    enemy_list.append(enemy)
-
-    enemy = Enemy("A coyote is running towards you!", "coyote", 0, 15)
-    enemy_list.append(enemy)
-
-    enemy = Enemy("A rat is staring at you.",
-                  "rat", 12, 2)
-    enemy_list.append(enemy)
+    enemy_list = create_enemy()
 
     current_room = 0
     player_health = 5
