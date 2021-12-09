@@ -268,6 +268,9 @@ def main():
     item = Item("An old key is here.", "key", 6)
     item_list.append(item)
 
+    item = Item("A slingshot is here.", "slingshot", 12)
+    item_list.append(item)
+
     # Enemies
     enemy_list = []
 
@@ -281,11 +284,16 @@ def main():
     enemy = Enemy("Three coyotes are running towards you!", "coyote", 0, 15)
     enemy_list.append(enemy)
 
+    enemy = Enemy("A rat is staring at you.",
+                  "rat", 12, 2)
+    enemy_list.append(enemy)
+
     current_room = 0
     done = False
     food_exist = True
     bucket_full = False
     stapler_count = 5
+    rock_count = 3
 
     while not done:
         print()
@@ -461,6 +469,17 @@ def main():
                                 print(f"You used the stapler. There are {stapler_count} staples left.")
                             else:
                                 print("There are no staples left.")
+                        if command_words[1] == "slingshot":
+                            if rock_count > 0:
+                                rock_count -= 1
+                                print(f"You used the slingshot. There are {rock_count} rocks left.")
+                                if current_room == 0:
+                                    enemy.health -= 5
+                                    print("You hit the coyote.")
+                                    if enemy.health <= 0:
+                                        print("You killed the coyote.")
+                            else:
+                                print("There are no rocks left.")
                         if command_words[1] == "fork":
                             print(f"You used the {item.name}.")
                         if command_words[1] == "compass":
