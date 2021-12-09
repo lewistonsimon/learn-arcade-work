@@ -1,43 +1,8 @@
 import random
 
-
-class Room:
-    """
-    This is a class that represents the rooms.
-    """
-    def __init__(self, description, north, east, south, west, up, down, northeast, northwest, southeast, southwest):
-        self.description = description
-        self.north = north
-        self.east = east
-        self.south = south
-        self.west = west
-        self.up = up
-        self.down = down
-        self.northeast = northeast
-        self.northwest = northwest
-        self.southeast = southeast
-        self.southwest = southwest
-
-
-class Item:
-    """
-    This is a class that represents the items.
-    """
-    def __init__(self, description, name, room_number):
-        self.description = description
-        self.name = name
-        self.room_number = room_number
-
-
-class Enemy:
-    """
-    This is a class that represents the enemies.
-    """
-    def __init__(self, description, name, room_number, health):
-        self.description = description
-        self.name = name
-        self.room_number = room_number
-        self.health = health
+from item import Item
+from room import Room
+from enemy import Enemy
 
 
 def main():
@@ -268,7 +233,7 @@ def main():
     item = Item("An old key is here.", "key", 6)
     item_list.append(item)
 
-    item = Item("A slingshot is here.", "slingshot", 12)
+    item = Item("A slingshot is here.", "slingshot", 0)
     item_list.append(item)
 
     # Enemies
@@ -451,8 +416,6 @@ def main():
                 continue
             item_exist = False
             for item in item_list:
-                # if command_words[1].lower() is None:
-                #     print("Nothing is selected to be used.")
                 if item.name == command_words[1]:
                     item_exist = True
                     if item.room_number == -1:
@@ -464,28 +427,51 @@ def main():
                                 print("The bucket is empty.")
                                 print("You need to fill it before you can use it.")
                         if command_words[1] == "stapler":
-                            if stapler_count > 0:
+                            if stapler_count >= 1:
                                 stapler_count -= 1
                                 print(f"You used the stapler. There are {stapler_count} staples left.")
+                                for enemy in enemy_list:
+                                    if current_room == enemy.room_number:
+                                        if random.randrange(10) == 0:
+                                            enemy.health -= 1
+                                            print(f"You hit the {enemy.name}.")
+                                            print(enemy.health)
+                                            if enemy.health <= 0:
+                                                print(f"You killed the {enemy.name}.")
+                                        else:
+                                            print(f"You missed the {enemy.name}.")
                             else:
                                 print("There are no staples left.")
                         if command_words[1] == "slingshot":
-                            if rock_count > 0:
+                            if rock_count >= 1:
                                 rock_count -= 1
                                 print(f"You used the slingshot. There are {rock_count} rocks left.")
-                                if current_room == 0:
-                                    enemy.health -= 5
-                                    print("You hit the coyote.")
-                                    if enemy.health <= 0:
-                                        print("You killed the coyote.")
+                                for enemy in enemy_list:
+                                    if current_room == enemy.room_number:
+                                        if random.randrange(2)
+                                            enemy.health -= 3
+                                            print(f"You hit the {enemy.name}.")
+                                            print(enemy.health)
+                                            if enemy.health <= 0:
+                                                print(f"You killed the {enemy.name}.")
+                                        else(f"You missed the {enemy.name}.")
                             else:
                                 print("There are no rocks left.")
                         if command_words[1] == "fork":
                             print(f"You used the {item.name}.")
                         if command_words[1] == "compass":
                             print(f"You used the {item.name}.")
+                            user_input = input("Where do you want to go?")
+                            if user_input == "room.name":
+                                current_room = user_input
                         if command_words[1] == "knife":
                             print(f"You used the {item.name}.")
+                            for enemy in enemy_list:
+                                if current_room == enemy.room_number:
+                                    enemy.health -= 5
+                                    print(f"You stabbed the {enemy.name}.")
+                                    if enemy.health <= 0:
+                                        print(f"You killed the {enemy.name}.")
                         if command_words[1] == "food":
                             print(f"You used the {item.name}.")
                         if command_words[1] == "twine":
@@ -493,7 +479,10 @@ def main():
                         if command_words[1] == "Corn":
                             print(f"You used the {item.name}.")
                         if command_words[1] == "key":
-                            print(f"You used the {item.name}.")
+                            if current_room == 12:
+                                print(f"You unlocked the door.")
+                            else:
+                                print("There is nothing to unlock.")
                     else:
                         print(f"You do not have possession of the {command_words[1]}. ")
             if not item_exist:
