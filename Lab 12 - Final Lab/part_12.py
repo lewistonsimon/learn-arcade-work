@@ -246,7 +246,7 @@ def main():
                   "scarecrow", 16, 5)
     enemy_list.append(enemy)
 
-    enemy = Enemy("Three coyotes are running towards you!", "coyote", 0, 15)
+    enemy = Enemy("A coyote is running towards you!", "coyote", 0, 15)
     enemy_list.append(enemy)
 
     enemy = Enemy("A rat is staring at you.",
@@ -254,8 +254,10 @@ def main():
     enemy_list.append(enemy)
 
     current_room = 0
+    player_health = 5
     done = False
     food_exist = True
+    corn_exist = True
     bucket_full = False
     stapler_count = 5
     rock_count = 3
@@ -409,6 +411,34 @@ def main():
             else:
                 print("There is nowhere to fill anything.")
 
+        # If the user wants to eat the food or the corn.
+        elif command_words[0].lower() == "eat":
+            if len(command_words) == 1:
+                print("What do you want to eat?")
+                continue
+            item_exist = False
+            for item in item_list:
+                if item.name == command_words[1]:
+                    item_exist = True
+                    if item.name == "food":
+                        if food_exist:
+                            print(f"You ate the {command_words[1]}")
+                            food_exist = False
+                            item_list.remove(item)
+                        else:
+                            print("You already ate the food.")
+                    if item.name == "corn":
+                        if corn_exist:
+                            print(f"You ate the {command_words[1]}.")
+                            corn_exist = False
+                            item_list.remove(item)
+                        else:
+                            print("You already ate the corn.")
+                    else:
+                        print(f"You can not eat the {command_words[1]}.")
+            if not item_exist:
+                print(f"You do not have possession of the {command_words[1]}.")
+
         # When the user wants to use an item.
         elif command_words[0].lower() == "use":
             if len(command_words) == 1:
@@ -448,13 +478,14 @@ def main():
                                 print(f"You used the slingshot. There are {rock_count} rocks left.")
                                 for enemy in enemy_list:
                                     if current_room == enemy.room_number:
-                                        if random.randrange(2)
+                                        if random.randrange(2):
                                             enemy.health -= 3
                                             print(f"You hit the {enemy.name}.")
                                             print(enemy.health)
                                             if enemy.health <= 0:
                                                 print(f"You killed the {enemy.name}.")
-                                        else(f"You missed the {enemy.name}.")
+                                        else:
+                                            print(f"You missed the {enemy.name}.")
                             else:
                                 print("There are no rocks left.")
                         if command_words[1] == "fork":
@@ -496,6 +527,15 @@ def main():
         # The user selects an option that does not exist.
         else:
             print("error: please pick again.")
+
+        for enemy in enemy_list:
+            if enemy.room_number == current_room:
+                if player_health >= 1:
+                    player_health -= 1
+                    print(f"You were injured by {enemy.name}.")
+                else:
+                    print(f"You were killed by the {enemy.name}.")
+                    done = True
 
 
 main()
