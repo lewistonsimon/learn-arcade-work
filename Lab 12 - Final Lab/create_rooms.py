@@ -9,7 +9,7 @@ def create_rooms():
     room = Room("You are standing outside on a farm. The corn is tall and green.\n"
                 "Clouds fill the sky and the noise of distant tractors fill your ears.\n"
                 "The wind ruffles the leaves in the trees and you see squirrels running around the yard.\n"
-                "There is an old red barn to the east. The door is slide open.\n"
+                "There is an old red barn to the east. The door is slid open.\n"
                 "Paint is beginning to chip off of it causing it to look rundown.\n"
                 "To the west there is a white ranch style house.\n"
                 "North of you is a corn field.",
@@ -77,9 +77,9 @@ def create_rooms():
 
     # Room 8
     room = Room("You are standing in a hallway. 18th century paintings lines the walls. \n"
-                "There are doors to your north and south.\n"
+                "There are doors to your north, west, and south.\n"
                 "You can also head east down a hallway.",
-                9, 1, 7, None, None, None, None, None, None, None)
+                9, 1, 7, 26, None, None, None, None, None, None)
     room_list.append(room)
 
     # Room 9
@@ -190,6 +190,11 @@ def create_rooms():
     room = Room("You are standing along the fence line at the opposite end of the property.\n"
                 "You can continue by going east, south, west, or southeast.",
                 None, 19, 17, 18, None, None, None, None, 15, None)
+    room_list.append(room)
+
+    # Room 26
+    room = Room("You are standing in the bathroom. There is a medicine cabinet above the counter.",
+                None, 8, None, None, None, None, None, None, None, None)
     room_list.append(room)
 
     return room_list

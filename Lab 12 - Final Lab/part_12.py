@@ -16,13 +16,11 @@ def main():
     enemy_list = create_enemy()
 
     current_room = 0
-    player_health = 5
+    player_health = 7
     done = False
-    food_exist = True
-    corn_exist = True
     bucket_full = False
-    stapler_count = 5
-    rock_count = 3
+    stapler_count = 25
+    rock_count = 6
 
     while not done:
         print()
@@ -123,7 +121,7 @@ def main():
                 continue
             item_exist = False
             for item in item_list:
-                if item.name == command_words[1]:
+                if item.name == command_words[1].lower():
                     item_exist = True
                     if item.room_number == current_room:
                         item.room_number = -1
@@ -147,7 +145,7 @@ def main():
                 continue
             item_exist = False
             for item in item_list:
-                if item.name == command_words[1]:
+                if item.name == command_words[1].lower():
                     item_exist = True
                     if item.room_number == -1:
                         item.room_number = current_room
@@ -164,7 +162,7 @@ def main():
                 continue
             if current_room == 4:
                 for item in item_list:
-                    if item.name == command_words[1]:
+                    if item.name == command_words[1].lower():
                         if command_words[1] == "bucket":
                             bucket_full = True
                             print(f"The {item.name} is now full of water.")
@@ -180,22 +178,20 @@ def main():
                 continue
             item_exist = False
             for item in item_list:
-                if item.name == command_words[1]:
+                if item.name == command_words[1].lower():
                     item_exist = True
                     if item.name == "food":
-                        if food_exist:
+                        if item.room_number == -1:
                             print(f"You ate the {command_words[1]}")
-                            food_exist = False
                             item_list.remove(item)
                         else:
-                            print("You already ate the food.")
-                    if item.name == "corn":
-                        if corn_exist:
+                            print("You do not have any food.")
+                    elif item.name == "corn":
+                        if item.room_number == -1:
                             print(f"You ate the {command_words[1]}.")
-                            corn_exist = False
                             item_list.remove(item)
                         else:
-                            print("You already ate the corn.")
+                            print("You do not have the corn.")
                     else:
                         print(f"You can not eat the {command_words[1]}.")
             if not item_exist:
@@ -208,17 +204,17 @@ def main():
                 continue
             item_exist = False
             for item in item_list:
-                if item.name == command_words[1]:
+                if item.name == command_words[1].lower():
                     item_exist = True
                     if item.room_number == -1:
-                        if command_words[1] == "bucket":
+                        if command_words[1].lower() == "bucket":
                             if bucket_full is True:
                                 print(f"You used the {item.name}.")
                                 print(f"The {item.name} is now empty.")
                             else:
                                 print("The bucket is empty.")
                                 print("You need to fill it before you can use it.")
-                        if command_words[1] == "stapler":
+                        if command_words[1].lower() == "stapler":
                             if stapler_count >= 1:
                                 stapler_count -= 1
                                 print(f"You used the stapler. There are {stapler_count} staples left.")
@@ -227,37 +223,37 @@ def main():
                                         if random.randrange(10) == 0:
                                             enemy.health -= 1
                                             print(f"You hit the {enemy.name}.")
-                                            print(enemy.health)
                                             if enemy.health <= 0:
                                                 print(f"You killed the {enemy.name}.")
+                                                enemy_list.remove(enemy)
                                         else:
                                             print(f"You missed the {enemy.name}.")
                             else:
                                 print("There are no staples left.")
-                        if command_words[1] == "slingshot":
+                        if command_words[1].lower() == "slingshot":
                             if rock_count >= 1:
                                 rock_count -= 1
                                 print(f"You used the slingshot. There are {rock_count} rocks left.")
                                 for enemy in enemy_list:
                                     if current_room == enemy.room_number:
-                                        if random.randrange(2):
+                                        if random.randrange(2) == 0:
                                             enemy.health -= 3
                                             print(f"You hit the {enemy.name}.")
-                                            print(enemy.health)
                                             if enemy.health <= 0:
                                                 print(f"You killed the {enemy.name}.")
+                                                enemy_list.remove(enemy)
                                         else:
                                             print(f"You missed the {enemy.name}.")
                             else:
                                 print("There are no rocks left.")
-                        if command_words[1] == "fork":
+                        if command_words[1].lower() == "fork":
                             print(f"You used the {item.name}.")
-                        if command_words[1] == "compass":
+                        if command_words[1].lower() == "compass":
                             print(f"You used the {item.name}.")
                             user_input = input("Where do you want to go?")
                             if user_input == "room.name":
                                 current_room = user_input
-                        if command_words[1] == "knife":
+                        if command_words[1].lower() == "knife":
                             print(f"You used the {item.name}.")
                             for enemy in enemy_list:
                                 if current_room == enemy.room_number:
@@ -265,21 +261,44 @@ def main():
                                     print(f"You stabbed the {enemy.name}.")
                                     if enemy.health <= 0:
                                         print(f"You killed the {enemy.name}.")
-                        if command_words[1] == "food":
+                                        enemy_list.remove(enemy)
+                        if command_words[1].lower() == "food":
                             print(f"You used the {item.name}.")
-                        if command_words[1] == "twine":
+                        if command_words[1].lower() == "twine":
                             print(f"You used the {item.name}.")
-                        if command_words[1] == "Corn":
+                        if command_words[1].lower() == "Corn":
                             print(f"You used the {item.name}.")
-                        if command_words[1] == "key":
+                        if command_words[1].lower() == "key":
                             if current_room == 12:
                                 print(f"You unlocked the door.")
                             else:
                                 print("There is nothing to unlock.")
+                        if command_words[1].lower() == "medicine":
+                            if player_health < 7:
+                                player_health = 7
+                                print("You have been healed.")
+                                item_list.remove(item)
+                            else:
+                                print("You do not need the medicine right now.")
                     else:
                         print(f"You do not have possession of the {command_words[1]}. ")
             if not item_exist:
                 print(f"You do not have possession of the {command_words[1]}. ")
+
+        # If the user wants to punch.
+        elif command_words[0].lower() == "punch":
+            for enemy in enemy_list:
+                if current_room == enemy.room_number:
+                    enemy.health -= .5
+                    print(f"You hit the {enemy.name}.")
+                    if enemy.health <= 0:
+                        print(f"You killed the {enemy.name}.")
+                        enemy_list.remove(enemy)
+            else:
+                if random.randrange(2) == 0:
+                    print("Solid uppercut!")
+                else:
+                    print("You have a mean right hook!")
 
         # When the user wants to quit the game.
         elif command_words[0].lower() == "q" or command_words[0].lower() == "quit":
@@ -288,17 +307,18 @@ def main():
 
         # The user selects an option that does not exist.
         else:
-            print("error: please pick again.")
+            print("error: please try again.")
 
         # If the user runs into an enemy.
         for enemy in enemy_list:
             if enemy.room_number == current_room:
-                if player_health >= 1:
-                    player_health -= 1
-                    print(f"You were injured by {enemy.name}.")
-                else:
-                    print(f"You were killed by the {enemy.name}.")
-                    done = True
+                if enemy.health > 0:
+                    if player_health >= 1:
+                        player_health -= 1
+                        print(f"You were injured by the {enemy.name}.")
+                    else:
+                        print(f"You were killed by the {enemy.name}.")
+                        done = True
 
 
 main()

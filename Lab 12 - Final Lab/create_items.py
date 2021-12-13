@@ -32,7 +32,10 @@ def create_items():
     item = Item("An old key is here.", "key", 6)
     item_list.append(item)
 
-    item = Item("A slingshot is here.", "slingshot", 0)
+    item = Item("A slingshot is here.", "slingshot", 12)
+    item_list.append(item)
+
+    item = Item("Medicine is here.", "medicine", 26)
     item_list.append(item)
 
     return item_list
